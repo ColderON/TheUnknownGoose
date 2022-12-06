@@ -14,9 +14,8 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="300"/>
-                    <ColumnDefinition Width="50"/>
                     <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="800"/>
                 </Grid.ColumnDefinitions>
 
                 <Button x:Name="btnShowProductsList" Grid.Column="0" Content="Show Products" BorderBrush="LightGray"
