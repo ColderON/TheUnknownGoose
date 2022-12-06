@@ -12,10 +12,10 @@
 
             <Grid Background="AliceBlue" >
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition Width="120"/>
                     <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="800"/>
                 </Grid.ColumnDefinitions>
 
                 <Button x:Name="btnShowProductsList" Grid.Column="0" Content="Show Products" BorderBrush="LightGray"
@@ -24,6 +24,7 @@
                         Width="100" Height="30" HorizontalAlignment="Left" Margin="10"/>
                 <Button x:Name="btnCalories" Grid.Column="2" Content="Calorie Counter" BorderBrush="LightGray"
                         Width="100" Height="30" HorizontalAlignment="Left" Margin="10"/>
+                <ProgressBar x:Name="progBar" Grid.Column="3" />
             </Grid>
         </Border>
 
