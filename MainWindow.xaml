@@ -6,7 +6,32 @@
         xmlns:local="clr-namespace:TheUnknownGoose"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
+    <DockPanel>
+        <Border DockPanel.Dock="Top" BorderBrush="Gray" BorderThickness="3"
+                Background="WhiteSmoke">
 
-    </Grid>
+            <Grid Background="AliceBlue" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="300"/>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <Button x:Name="btnShowProductsList" Grid.Column="0" Content="Show Products" BorderBrush="LightGray"
+                        Width="100" Height="30" HorizontalAlignment="Left" Margin="10"/>
+                <Button x:Name="btnAddItem" Grid.Column="1" Content="Add" BorderBrush="LightGray"
+                        Width="100" Height="30" HorizontalAlignment="Left" Margin="10"/>
+                <Button x:Name="btnCalories" Grid.Column="2" Content="Calorie Counter" BorderBrush="LightGray"
+                        Width="100" Height="30" HorizontalAlignment="Left" Margin="10"/>
+            </Grid>
+        </Border>
+
+
+        <Grid>
+            <Frame x:Name="MainPage" NavigationUIVisibility="Hidden"/>
+        </Grid>
+    </DockPanel>
+
 </Window>
