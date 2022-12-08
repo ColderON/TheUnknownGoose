@@ -1,0 +1,38 @@
+﻿<Window x:Class="TheUnknownGoose.EditWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TheUnknownGoose"
+        mc:Ignorable="d"
+        Title="Edit Product" Height="150" Width="220" ShowInTaskbar="False" ResizeMode="NoResize"
+        WindowStartupLocation="CenterOwner" ScrollViewer.VerticalScrollBarVisibility="Disabled" AutomationProperties.Name="EditWindow">
+    <Grid>
+        <Button Content="Cancel" HorizontalAlignment="Left" Margin="155,81,0,0"
+                VerticalAlignment="Top" Width="40" Height="20" IsCancel="True" Click="btnCancelClick"/>
+
+        <Button Content="OK" HorizontalAlignment="Left" Margin="10,81,0,0"
+                VerticalAlignment="Top" Width="40" Height="20" IsDefault="True" Click="btnOkClick"/>
+
+        <ComboBox HorizontalAlignment="Left" Margin="70,10,0,0"
+                  VerticalAlignment="Top" Width="125" Height="20" IsReadOnly="True"/>
+
+        <Label Content="Category" HorizontalAlignment="Left" Margin="10,10,0,0"
+               VerticalAlignment="Top" Height="20" Padding="0,0,0,0" FontSize="13"/>
+
+        <TextBox HorizontalAlignment="Left" Margin="10,35,0,0"
+                 TextWrapping="Wrap" Text="Name" VerticalAlignment="Top" Width="185" Height="16"/>
+
+        <TextBox HorizontalAlignment="Left" Margin="10,56,0,0"
+                 VerticalAlignment="Top" Width="40" Height="20"/>
+
+        <Label Content="Kcal" HorizontalAlignment="Left" Margin="55,56,0,0"
+               VerticalAlignment="Top" Height="20" Width="25" Padding="0,0,0,0"/>
+
+        <TextBox HorizontalAlignment="Left" Margin="92,56,0,0"
+                 VerticalAlignment="Top" Width="40" Text="0" Height="20"/>
+
+        <ComboBox HorizontalAlignment="Left" Margin="137,56,0,0"
+                  VerticalAlignment="Top" Width="58" Height="20" RenderTransformOrigin="1.506,0.951"/>
+    </Grid>
+</Window>
