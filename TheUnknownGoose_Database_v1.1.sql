@@ -7,6 +7,10 @@ create table CategoriesOfProducts(
 Id bigint primary key identity,
 Name nvarchar(32) unique
 );
+
+insert into CategoriesOfProducts(Name)
+Values ('Fruits'), ('Vegetables'), ('Cereals and Pulses'), ('Chesse'),('Meat'),('Drinks')
+
 create table Products(
 Id bigint primary key identity,
 Name nvarchar(32) unique NOT NULL,
@@ -15,16 +19,6 @@ Measure nvarchar(32),
 CategoryId bigint foreign key references CategoriesOfProducts(Id) on update cascade,
 Comment nvarchar(256)
 );
-create table Dishes(
-Id bigint primary key identity,
-Name nvarchar(32) unique NOT NULL,
-NumberOfCalories int NOT NULL,
-Comment nvarchar(256)
-);
-
-
-insert into CategoriesOfProducts(Name)
-Values ('Fruits'), ('Vegetables'), ('Cereals and Pulses'), ('Chesse'),('Meat'),('Drinks')
 
 insert into Products(Name, NumberOfCalories, Measure, CategoryId)
 Values ('Apple', 20, 'stk', 1), ('Banana', 111, 'stk', 1),('Bluebarries', 62,'stk', 1),('Kiwi', 112, 'stk', 1),
@@ -37,3 +31,49 @@ Values ('Apple', 20, 'stk', 1), ('Banana', 111, 'stk', 1),('Bluebarries', 62,'st
 ('Duck', 338,'per 100 grams', 5),('Pork', 196,'per 100 grams', 5),
 ('Coke', 149,'per 355 ml', 6),('Coke Zero', 0,'per 355 ml', 6),
 ('7up', 156,'per 355 ml', 6), ('Dr.Pepper', 96,'per 355 ml', 6)
+
+create table CategoriesOfDishes(
+Id bigint primary key identity,
+Name nvarchar(32) unique
+)
+
+create table Dishes(
+Id bigint primary key identity,
+Name nvarchar(32) unique NOT NULL,
+NumberOfCalories int NOT NULL,
+Comment nvarchar(256),
+CategoryId bigint foreign key references CategoriesOfDishes(Id) on update cascade
+);
+
+
+create procedure GetIdforList_CategProduct
+@itemName nvarchar(32),
+@itemId bigint output
+as
+begin
+Select @itemId = Id from CategoriesOfProducts where Name = @itemName
+end
+
+create procedure GetIdforList_Products
+@itemName nvarchar(32),
+@itemId bigint output
+as
+begin
+Select @itemId = Id from Products where Name = @itemName
+end
+
+create procedure GetIdforList_CategDish
+@itemName nvarchar(32),
+@itemId bigint output
+as
+begin
+Select @itemId = Id from CategoriesOfDishes where Name = @itemName
+end
+
+create procedure GetIdforList_Dishes
+@itemName nvarchar(32),
+@itemId bigint output
+as
+begin
+Select @itemId = Id from Dishes where Name = @itemName
+end
