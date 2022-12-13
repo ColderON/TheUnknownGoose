@@ -28,9 +28,7 @@ namespace TheUnknownGoose
         }
 
         private void btnShowProductsList_Click(object sender, RoutedEventArgs e)
-        {
-            Goose.CreateConnection();
-            Goose.FillProductsList();            
+        {                 
             MainPage.Content = new Page_ShowProducts();
         }
 
