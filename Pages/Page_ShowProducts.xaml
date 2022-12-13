@@ -8,7 +8,7 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Page_ShowProducts">
 
-    <Grid Background="Azure" >
-        
+    <Grid Background="Azure" >      
+
     </Grid>
 </Page>

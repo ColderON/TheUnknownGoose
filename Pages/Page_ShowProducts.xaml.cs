@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyGooseLibrary;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,7 +23,7 @@ namespace TheUnknownGoose
     {
         public Page_ShowProducts()
         {
-            InitializeComponent();
+            InitializeComponent();           
         }
     }
 }

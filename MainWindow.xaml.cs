@@ -1,5 +1,7 @@
-﻿using System;
+﻿using MyGooseLibrary;
+using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,7 +28,7 @@ namespace TheUnknownGoose
         }
 
         private void btnShowProductsList_Click(object sender, RoutedEventArgs e)
-        {
+        {                 
             MainPage.Content = new Page_ShowProducts();
         }
 
