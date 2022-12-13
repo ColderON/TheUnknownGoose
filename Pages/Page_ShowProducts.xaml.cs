@@ -23,7 +23,7 @@ namespace TheUnknownGoose
     {
         public Page_ShowProducts()
         {
-            InitializeComponent();
+            InitializeComponent();           
         }
     }
 }
