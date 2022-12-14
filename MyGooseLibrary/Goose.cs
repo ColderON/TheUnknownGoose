@@ -37,7 +37,10 @@ namespace MyGooseLibrary
             {
                 connection.Open();
             }
-            catch (DbException ex) { }
+            catch (DbException ex) {
+            
+                System.Diagnostics.Debug.WriteLine(ex.Message);
+            }
         }       
 
         public static void FillCategorOfProdList()
