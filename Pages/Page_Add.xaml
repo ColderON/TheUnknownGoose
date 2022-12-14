@@ -6,9 +6,17 @@
       xmlns:local="clr-namespace:TheUnknownGoose"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="Page_Add">
+      Title="Page_Add" Loaded="Page_Loaded">  
+    
 
-    <Grid>
-        
+    
+    <Grid Background="AliceBlue">        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300"/>
+            <ColumnDefinition Width="300"/>
+        </Grid.ColumnDefinitions>
+
+        <TreeView x:Name="mainTreeView" DockPanel.Dock="Top" Grid.Column="0" Margin="10" SelectedItemChanged="mainTreeView_SelectedItemChanged"/>
+        <Label Name="label" Grid.Column="1" Width="400" Height="100"/>
     </Grid>
 </Page>

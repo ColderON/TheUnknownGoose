@@ -25,10 +25,15 @@ namespace TheUnknownGoose
         public MainWindow()
         {
             InitializeComponent();
+            Goose.CreateConnection();
+            Goose.FillCategorOfProdList();
+            Goose.FillCategoriesOfDishesList();
+            Goose.FillDishesList();
+            Goose.FillProductsList();
         }
 
         private void btnShowProductsList_Click(object sender, RoutedEventArgs e)
-        {                 
+        {   
             MainPage.Content = new Page_ShowProducts();
         }
 
