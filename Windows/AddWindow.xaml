@@ -137,7 +137,7 @@
                              Margin="40,10,3,10"/>
 
                     <ComboBox Grid.Column="3"
-                              Name="textBoxChosenMeasure"
+                              Name="comboBoxChosenMeasure"
                               VerticalAlignment="Center"
                               HorizontalAlignment="Right"
                               Margin="3,10,10,10"
