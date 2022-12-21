@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MyGooseLibrary.DatabaseClasses;
+using MyGooseLibrary;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +25,75 @@ namespace TheUnknownGoose
         public Page_Add()
         {
             InitializeComponent();
+        }
+
+        private void comboBoxChosenCategory_Loaded(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void radiobtnDishes_Checked(object sender, RoutedEventArgs e)
+        {
+            comboBoxChosenCategory.Items.Clear();
+            comboBoxChosenCategory.SelectedIndex = 0;
+            foreach (var a in Goose.categoryOfDishesList)
+                comboBoxChosenCategory.Items.Add(a);
+
+        }
+
+        private void radiobtnProducts_Checked(object sender, RoutedEventArgs e)
+        {
+
+            comboBoxChosenCategory.Items.Clear();
+            comboBoxChosenCategory.SelectedIndex = 0;
+            foreach (var a in Goose.categorOfProdList)
+                comboBoxChosenCategory.Items.Add(a);
+
+
+        }
+
+        private void comboBoxChosenCategory_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            listBoxShowChosenProducts.Items.Clear();
+            //comboBoxChosenEntity.SelectedIndex = 0;
+
+            if (radiobtnProducts.IsChecked == true)
+            {
+
+                foreach (var a in Goose.productsList)
+                {
+                    if (a.categoryId == (comboBoxChosenCategory.SelectedItem as CategoryOfProduct).id)
+                        listBoxShowChosenProducts.Items.Add(a);
+
+                }
+            }
+            else if (radiobtnDishes.IsChecked == true)
+            {
+                foreach (var a in Goose.dishesList)
+                {
+                    if (a.categoryId == (comboBoxChosenCategory.SelectedItem as CategoryOfDish).id)
+                            listBoxShowChosenProducts.Items.Add(a);
+                }
+            }
+        }
+
+        private void BtnAddClick(object sender, RoutedEventArgs e)
+        {
+            AddWindow addWindow = new AddWindow();
+            addWindow.Show();
+
+            
+
+        }
+
+        private void BtnEditClick(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void BtnDeleteClick(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -33,5 +33,20 @@ namespace TheUnknownGoose
         {
             throw new NotImplementedException();
         }
+
+        private void RBtnProductChecked(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void RBtnDishChecked(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void btnEditClick(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

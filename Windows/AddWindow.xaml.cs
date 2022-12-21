@@ -26,10 +26,20 @@ namespace TheUnknownGoose
 
         private void btnCancelClick(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            this.Close();
         }
 
         private void btnAddClick(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void RBtnDishChecked(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void RBtnProductChecked(object sender, RoutedEventArgs e)
         {
             throw new NotImplementedException();
         }
