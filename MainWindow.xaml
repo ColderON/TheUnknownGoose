@@ -18,9 +18,9 @@
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
 
-                <Button x:Name="btnShowProductsList" Grid.Column="0" Content="My Meal" BorderBrush="LightGray"
+                <Button x:Name="btnShowProductsList" Grid.Column="0" Content="Show Products" BorderBrush="LightGray"
                         Width="100" Height="30" HorizontalAlignment="Left" Margin="10" Click="btnShowProductsList_Click"/>
-                <Button x:Name="btnAddItem" Grid.Column="1" Content="Products List" BorderBrush="LightGray"
+                <Button x:Name="btnAddItem" Grid.Column="1" Content="Add" BorderBrush="LightGray"
                         Width="100" Height="30" HorizontalAlignment="Left" Margin="10" Click="btnAddItem_Click"/>
                 <Button x:Name="btnCalories" Grid.Column="2" Content="Calorie Counter" BorderBrush="LightGray"
                         Width="100" Height="30" HorizontalAlignment="Left" Margin="10" Click="btnCalories_Click"/>

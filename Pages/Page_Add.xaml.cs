@@ -18,9 +18,9 @@ namespace TheUnknownGoose
     /// <summary>
     /// Interaction logic for Page_Add.xaml
     /// </summary>
-    public partial class Products_List : Page
+    public partial class Page_Add : Page
     {
-        public Products_List()
+        public Page_Add()
         {
             InitializeComponent();
         }
