@@ -22,11 +22,11 @@
             <RowDefinition />
         </Grid.RowDefinitions>
 
-        <RadioButton x:Name="radiobtnMale" GroupName="Gender" Grid.Column="0"  Grid.ColumnSpan="1" Grid.Row="0" Grid.RowSpan="1" Content="Male" HorizontalAlignment="Center" Width="60" Margin="20,20,0,0"/>
-        <RadioButton x:Name="radiobtnFemale" GroupName="Gender"  Grid.Column="0" Grid.ColumnSpan="1" Grid.Row="0" Grid.RowSpan="1" Content="Female" HorizontalAlignment="Left" Width="60" Margin="20,20,0,0"/>
-        <TextBox x:Name="textBoxWeight" Grid.Column="1" Grid.ColumnSpan="1" Grid.Row="0" Grid.RowSpan="1" Text="Enter weight" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Margin="20,20,0,0"/>
-        <TextBox x:Name="textBoxHeight" Grid.Column="2" Grid.ColumnSpan="1" Grid.Row="0" Grid.RowSpan="1" Text="Enter height" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Margin="20,20,0,0"/>
-        <TextBox x:Name="textBoxAge" Grid.Column="3" Grid.ColumnSpan="1" Grid.Row="0" Grid.RowSpan="1" Text="Enter age" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Margin="20,20,0,0"/>
+        <RadioButton x:Name="radiobtnMale" GroupName="Gender" Grid.Column="0"  Grid.ColumnSpan="1" Grid.Row="0" Grid.RowSpan="1" Content="Male" HorizontalAlignment="Right" Width="60" Margin="0,20,0,0"/>
+        <RadioButton x:Name="radiobtnFemale" GroupName="Gender"  Grid.Column="0" Grid.ColumnSpan="1" Grid.Row="0" Grid.RowSpan="1" Content="Female" HorizontalAlignment="Left" Width="60" Margin="0,20,0,0"/>
+        <TextBox x:Name="textBoxWeight" Grid.Column="1" Grid.ColumnSpan="1" Grid.Row="0" Grid.RowSpan="1" Text="Enter weight" HorizontalAlignment="Center" VerticalAlignment="Top" Width="100" Margin="0,20,0,0"/>
+        <TextBox x:Name="textBoxHeight" Grid.Column="2" Grid.ColumnSpan="1" Grid.Row="0" Grid.RowSpan="1" Text="Enter height" HorizontalAlignment="Center" VerticalAlignment="Top" Width="100" Margin="0,20,0,0"/>
+        <TextBox x:Name="textBoxAge" Grid.Column="3" Grid.ColumnSpan="1" Grid.Row="0" Grid.RowSpan="1" Text="Enter age" HorizontalAlignment="Center" VerticalAlignment="Top" Width="100" Margin="0,20,0,0"/>
         <RadioButton x:Name="radiobtnMeintenance" GroupName="Weight" Grid.Column="0"  Grid.ColumnSpan="1" Grid.Row="1" Grid.RowSpan="1" Content="Maintance" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Margin="20,0,0,0"/>
         <RadioButton x:Name="radiobtnShred" GroupName="Weight" Grid.Column="0"  Grid.ColumnSpan="1" Grid.Row="1" Grid.RowSpan="1" Content="Shred" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"  Margin="20,0,0,0"/>
         <RadioButton x:Name="radiobtnBulk" GroupName="Weight" Grid.Column="0"  Grid.ColumnSpan="1" Grid.Row="1" Grid.RowSpan="1" Content="Bulk" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="100" Margin="20,0,0,0"/>
