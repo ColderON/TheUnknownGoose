@@ -138,17 +138,17 @@ namespace TheUnknownGoose
 
         private void radiobtnGramms_Checked(object sender, RoutedEventArgs e)
         {
-            textBoxGramms.Text = "Gramms";
+            textBoxGramms.Text = "100";
         }
 
         private void radiobtnPieces_Checked(object sender, RoutedEventArgs e)
         {
-            textBoxGramms.Text = "Pieces";
+            textBoxGramms.Text = "1";
         }
 
         private void radiobtnCans_Checked(object sender, RoutedEventArgs e)
         {
-            textBoxGramms.Text = "Cans";
+            textBoxGramms.Text = "1";
         }
 
         private void comboBoxChosenEntity_SelectionChanged(object sender, SelectionChangedEventArgs e)
