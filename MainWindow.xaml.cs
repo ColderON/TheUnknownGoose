@@ -30,6 +30,8 @@ namespace TheUnknownGoose
             Goose.FillCategorOfProdList();
             Goose.FillDishesList();
             Goose.FillProductsList();
+            progBar.Maximum = 2200;
+            progBar.Value = 0;
         }
 
         private void btnShowProductsList_Click(object sender, RoutedEventArgs e)

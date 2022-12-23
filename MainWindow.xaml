@@ -15,7 +15,7 @@
                     <ColumnDefinition Width="120"/>
                     <ColumnDefinition Width="120"/>
                     <ColumnDefinition Width="120"/>
-                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition />
                 </Grid.ColumnDefinitions>
 
                 <Button x:Name="btnShowProductsList" Grid.Column="0" Content="Show Products" BorderBrush="LightGray"
@@ -24,7 +24,7 @@
                         Width="100" Height="30" HorizontalAlignment="Left" Margin="10" Click="btnAddItem_Click"/>
                 <Button x:Name="btnCalories" Grid.Column="2" Content="Calorie Counter" BorderBrush="LightGray"
                         Width="100" Height="30" HorizontalAlignment="Left" Margin="10" Click="btnCalories_Click"/>
-                <ProgressBar x:Name="progBar" Grid.Column="3"/>
+                <ProgressBar x:Name="progBar" Grid.Column="3" IsEnabled="True" Margin="10" x:FieldModifier="public"/>
             </Grid>
         </Border>
 

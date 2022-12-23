@@ -105,12 +105,15 @@ namespace TheUnknownGoose
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
+            int? ccal = 0;
             if (radiobtnDishes.IsChecked == true)
             {
                 Dish item = (Dish)comboBoxChosenEntity.SelectedItem;
                 if (radiobtnDishes.IsChecked == true)
                 {
+                    
                     listBoxChosenProductsDishes.Items.Add(item + $"- {item.numberOfCalories * Convert.ToInt32(textBoxGramms.Text)} ccal per {textBoxGramms.Text} portions");
+                    ccal = item.numberOfCalories * Convert.ToInt32(textBoxGramms.Text);
                 }
             }
             else if (radiobtnProducts.IsChecked == true)
@@ -119,18 +122,25 @@ namespace TheUnknownGoose
                 if (radiobtnGramms.IsChecked == true)
                 {
                     listBoxChosenProductsDishes.Items.Add(item + $"- {item.numberOfCalories * Convert.ToInt32(textBoxGramms.Text) / 100} ccal per {textBoxGramms.Text} gramms ");
-
+                    ccal=item.numberOfCalories * Convert.ToInt32(textBoxGramms.Text) / 100;
                 }
                 else if (radiobtnPieces.IsChecked == true)
                 {
                     listBoxChosenProductsDishes.Items.Add(item + $"- {item.numberOfCalories * Convert.ToInt32(textBoxGramms.Text)} ccal per {textBoxGramms.Text}");
+                    ccal=item.numberOfCalories* Convert.ToInt32(textBoxGramms.Text);
                 }
                 else if (radiobtnCans.IsChecked == true)
                 {
                     listBoxChosenProductsDishes.Items.Add(item + $"- {item.numberOfCalories * Convert.ToInt32(textBoxGramms.Text)} ccal per {textBoxGramms.Text} cans");
+                    ccal = item.numberOfCalories * Convert.ToInt32(textBoxGramms.Text);
                 }
             }
 
+            Dispatcher.Invoke(() =>
+            {
+                MainWindow main = new MainWindow();
+                main.progBar.Value += (double)ccal;
+            });
             
            
         }
