@@ -25,15 +25,15 @@
         <ListBox x:Name="listBoxChosenProductsDishes"  Grid.Column="0" Grid.ColumnSpan="1" Grid.Row="0" Grid.RowSpan="4" BorderThickness="3" Margin="10"/>
         <RadioButton x:Name="radiobtnDishes" GroupName="productDish" Grid.Column="1"  Grid.ColumnSpan="1" Grid.Row="0" Grid.RowSpan="1" Content="Dish" HorizontalAlignment="Right" Width="60" Margin="0,20,0,0" Checked="radiobtnDishes_Checked"/>
         <RadioButton x:Name="radiobtnProducts" GroupName="productDish"  Grid.Column="1" Grid.ColumnSpan="1" Grid.Row="0" Grid.RowSpan="1" Content="Product" HorizontalAlignment="Left" Width="60" Margin="0,20,0,0" Checked="radiobtnProducts_Checked"/>
-        <RadioButton x:Name="radiobtnGramms" GroupName="measure" Grid.Column="1"  Grid.ColumnSpan="1" Grid.Row="1" Grid.RowSpan="1" Content="Gramms" HorizontalAlignment="Left" VerticalAlignment="Top" Width="80" Margin="0,0,0,0"/>
-        <RadioButton x:Name="radiobtnPieces" GroupName="measure"  Grid.Column="1" Grid.ColumnSpan="1" Grid.Row="1" Grid.RowSpan="1" Content="Piece" HorizontalAlignment="Left" VerticalAlignment="Center"  Width="80" Margin="0,0,0,0"/>
-        <RadioButton x:Name="radiobtnCans" GroupName="measure"  Grid.Column="1" Grid.ColumnSpan="1" Grid.Row="1" Grid.RowSpan="1" Content="Can(350mlLitre)" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="120" Margin="0,0,0,0"/>
+        <RadioButton x:Name="radiobtnGramms" GroupName="measure" Grid.Column="1"  Grid.ColumnSpan="1" Grid.Row="1" Content="Gramms" HorizontalAlignment="Left" VerticalAlignment="Top" Width="80" Margin="0,0,0,0" Checked="radiobtnGramms_Checked"/>
+        <RadioButton x:Name="radiobtnPieces" GroupName="measure"  Grid.Column="1" Grid.ColumnSpan="1" Grid.Row="1" Content="Piece" HorizontalAlignment="Left" VerticalAlignment="Center"  Width="80" Margin="0,0,0,0" Checked="radiobtnPieces_Checked"/>
+        <RadioButton x:Name="radiobtnCans" GroupName="measure"  Grid.Column="1" Grid.ColumnSpan="1" Grid.Row="1" Grid.RowSpan="1" Content="Can(350mlLitre)" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="120" Margin="0,0,0,0" Checked="radiobtnCans_Checked"/>
         <TextBox x:Name="textBoxGramms" Grid.Column="1" Grid.ColumnSpan="1" Grid.Row="1" Grid.RowSpan="1" Text="Enter" HorizontalAlignment="Right" VerticalAlignment="Center" Width="100" Margin="0,0,0,0"/>
         <ComboBox x:Name="comboBoxChosenCategory" Text="Category" Grid.Column="2" Grid.ColumnSpan="1" Grid.Row="0" Grid.RowSpan="1"  Margin="30,10,30,50" Loaded="comboBoxChosenCategory_Loaded" SelectionChanged="comboBoxChosenCategory_SelectionChanged" />
-        <ComboBox x:Name="comboBoxChosenEntity" Text="Element from category" Grid.Column="2" Grid.ColumnSpan="1" Grid.Row="1" Grid.RowSpan="1"  Margin="30,0,30,60"  />
-        <Button x:Name="btnAdd" Grid.Column="3" Grid.ColumnSpan="1" Grid.Row="0" Grid.RowSpan="1" Content="Add to list" Margin="30,10,30,50" />
-        <Button x:Name="btnDelete" Grid.Column="3" Grid.ColumnSpan="1" Grid.Row="1" Grid.RowSpan="1" Content="Delete from list"  Margin="30,10,30,50" />
-        <Button x:Name="btnClear" Grid.Column="3" Grid.ColumnSpan="1" Grid.Row="2" Grid.RowSpan="1" Content="Clear list"  Margin="30,10,30,50" />
+        <ComboBox x:Name="comboBoxChosenEntity" Text="Element from category" Grid.Column="2" Grid.ColumnSpan="1" Grid.Row="1" Grid.RowSpan="1"  Margin="30,0,30,60" SelectionChanged="comboBoxChosenEntity_SelectionChanged"  />
+        <Button x:Name="btnAdd" Grid.Column="3" Grid.ColumnSpan="1" Grid.Row="0" Grid.RowSpan="1" Content="Add to list" Margin="30,10,30,50" Click="btnAdd_Click" />
+        <Button x:Name="btnDelete" Grid.Column="3" Grid.ColumnSpan="1" Grid.Row="1" Grid.RowSpan="1" Content="Delete from list"  Margin="30,10,30,50" Click="btnDelete_Click" />
+        <Button x:Name="btnClear" Grid.Column="3" Grid.ColumnSpan="1" Grid.Row="2" Grid.RowSpan="1" Content="Clear list"  Margin="30,10,30,50" Click="btnClear_Click" />
 
 
 
