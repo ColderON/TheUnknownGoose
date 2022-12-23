@@ -167,7 +167,7 @@ namespace TheUnknownGoose
                     radiobtnGramms.IsChecked = true;
                     radiobtnCans.IsEnabled = false;
                     radiobtnPieces.IsEnabled = false;
-                    textBoxGramms.Text = "Gramms";
+
 
                 }
                 if ((comboBoxChosenEntity.SelectedItem as Product).measure == "stk") {
@@ -175,14 +175,14 @@ namespace TheUnknownGoose
                     radiobtnPieces.IsChecked = true;
                     radiobtnCans.IsEnabled = false;
                     radiobtnGramms.IsEnabled = false;
-                    textBoxGramms.Text = "Stk";
+
                 }
                 if ((comboBoxChosenEntity.SelectedItem as Product).measure == "per 355 ml") {
                     radiobtnCans.IsEnabled = true;
                     radiobtnCans.IsChecked = true;
                     radiobtnPieces.IsEnabled = false;
                     radiobtnGramms.IsEnabled = false;
-                    textBoxGramms.Text = "Сans";
+
                 }
                 
             }
