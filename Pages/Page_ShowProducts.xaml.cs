@@ -25,8 +25,7 @@ namespace TheUnknownGoose
 
         public Page_ShowProducts()
         {
-            InitializeComponent();
-            
+            InitializeComponent();            
         }
 
         private void comboBoxChosenCategory_Loaded(object sender, RoutedEventArgs e)
