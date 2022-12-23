@@ -20,10 +20,10 @@ namespace TheUnknownGoose
     /// <summary>
     /// Interaction logic for Page_ShowProducts.xaml
     /// </summary>
-    public partial class My_Meal : Page
+    public partial class Page_ShowProducts : Page
     {
 
-        public My_Meal()
+        public Page_ShowProducts()
         {
             InitializeComponent();            
         }
