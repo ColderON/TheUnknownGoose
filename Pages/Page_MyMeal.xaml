@@ -6,7 +6,8 @@
       xmlns:local="clr-namespace:TheUnknownGoose"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="Page_ShowProducts">
+      Title="Page_MyMeal">
+
 
     <Grid Background="Azure">
         <Grid.ColumnDefinitions>

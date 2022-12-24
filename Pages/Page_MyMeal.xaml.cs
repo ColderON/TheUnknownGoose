@@ -18,7 +18,7 @@ using System.Windows.Shapes;
 namespace TheUnknownGoose
 {
     /// <summary>
-    /// Interaction logic for Page_ShowProducts.xaml
+    /// Interaction logic for Page_MyMeal.xaml
     /// </summary>
     public partial class Page_MyMeal : Page
     {
@@ -39,13 +39,10 @@ namespace TheUnknownGoose
             comboBoxChosenCategory.SelectedIndex = 0;
             foreach (var a in Goose.categoryOfDishesList)
                 comboBoxChosenCategory.Items.Add(a);
-
-
             radiobtnPieces.IsEnabled = true;
             radiobtnPieces.IsChecked = true;
             radiobtnCans.IsEnabled = false;
             radiobtnGramms.IsEnabled = false;
-
 
         }
 
@@ -70,7 +67,6 @@ namespace TheUnknownGoose
         {
             comboBoxChosenEntity.Items.Clear();
             //comboBoxChosenEntity.SelectedIndex = 0;
-
             if (radiobtnProducts.IsChecked == true && comboBoxChosenCategory.SelectedIndex >= 0)
             {
                 foreach (var a in Goose.productsList)
@@ -80,6 +76,7 @@ namespace TheUnknownGoose
 
                 }
             }
+
             else if (radiobtnDishes.IsChecked == true && comboBoxChosenCategory.SelectedIndex >= 0)
             {
                 foreach (var a in Goose.dishesList)

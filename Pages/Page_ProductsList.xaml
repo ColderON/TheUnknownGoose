@@ -6,9 +6,99 @@
       xmlns:local="clr-namespace:TheUnknownGoose"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="Page_Add">
+      Title="Page_ProductsList" >
 
-    <Grid>
-        
+    <Grid Background="Azure">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="6*"/>
+            <ColumnDefinition Width="9*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <ListBox x:Name="listBoxShowChosenProducts"
+                 Grid.Column="0"
+                 Grid.ColumnSpan="2"
+                 Grid.Row="0"
+                 Grid.RowSpan="4"
+                 BorderThickness="3"
+                 Margin="10,10,10,10"/>
+
+        <StackPanel Grid.Row="0"
+                    Grid.Column="2"
+                    Grid.ColumnSpan="2">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+
+                </Grid.ColumnDefinitions>
+
+                <RadioButton Grid.Column="0" x:Name="radiobtnDishes"
+                             GroupName="productDish"
+                             Content="Dish"
+                             HorizontalAlignment="Left"
+                             Width="76"
+                             Margin="0,50,0,10"
+                             Checked="radiobtnDishes_Checked"/>
+
+                <RadioButton Grid.Column="0" x:Name="radiobtnProducts"
+                             GroupName="productDish"
+                             Content="Product"
+                             HorizontalAlignment="Left"
+                             Width="76"
+                             Margin="0,10,0,10"
+                             Checked="radiobtnProducts_Checked"/>
+
+                <ComboBox Grid.Column="1" x:Name="comboBoxChosenCategory"
+                          Height="20"
+                          Width="250"
+                          Padding="0"
+                          HorizontalAlignment="Left"
+                          VerticalAlignment="Top"
+                          Text="Category"
+                          Margin="10"
+                          Loaded="comboBoxChosenCategory_Loaded"
+                          SelectionChanged="comboBoxChosenCategory_SelectionChanged"/>
+            </Grid>
+        </StackPanel>
+            
+        <Grid Row="3"
+              Column="3"
+              Margin="10,10,10,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Button Name="btnAdd"
+                    Content="Add"
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Click="BtnAddClick"/>
+
+            <Button Name="btnEdit"
+                    Content="Edit"
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Click="BtnEditClick"/>
+
+            <Button Name="btnDelete"
+                    Content="Delete"
+                    Grid.Row="1"
+                    Grid.Column="2"
+                    Click="BtnDeleteClick"/>
+        </Grid>
     </Grid>
 </Page>

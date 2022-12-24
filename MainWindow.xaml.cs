@@ -35,17 +35,13 @@ namespace TheUnknownGoose
         }
 
         private void btnShowProductsList_Click(object sender, RoutedEventArgs e)
-        {                
-
+        {
             MainPage.Content = new Page_MyMeal();
-
         }
 
         private void btnAddItem_Click(object sender, RoutedEventArgs e)
         {
-
             MainPage.Content = new Page_ProductsList();
-
         }
 
         private void btnCalories_Click(object sender, RoutedEventArgs e)
