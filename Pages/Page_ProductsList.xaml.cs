@@ -99,15 +99,20 @@ namespace TheUnknownGoose
         }
 
         private void BtnAddClick(object sender, RoutedEventArgs e)
-        {
+        {           
             AddWindow addWindow = new AddWindow();
             addWindow.Show();
         }
 
         private void BtnEditClick(object sender, RoutedEventArgs e)
         {
-            EditWindow editWindow = new EditWindow();
-            editWindow.Show();
+            if (radiobtnProducts.IsChecked == true && listBoxShowChosenProducts.SelectedIndex >= 0)
+            {
+                EditWindow window = new EditWindow((listBoxShowChosenProducts.SelectedItem as Product));
+                window.Show();
+            }
+            //EditWindow editWindow = new EditWindow();
+            //editWindow.Show();
         }
 
         private void BtnDeleteClick(object sender, RoutedEventArgs e)

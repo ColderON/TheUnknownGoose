@@ -26,16 +26,42 @@ namespace TheUnknownGoose
         public EditWindow()
         {
             InitializeComponent();
-            //if (Page_ProductsList.radiobtnProducts == 1)
-            //{
-            //    rBtnProduct.IsChecked = true;
-            //}
-            //else if(Page_ProductsList.radiobtnDishes == 2)
-            //{
-            //    rBtnDish.IsChecked = true;
-            //}
+        }
 
-            //textBoxChosenName.Text = Page_ProductsList.GetSelectedName;
+        public EditWindow(Dish dish)
+        {
+            InitializeComponent();
+            rBtnDish.IsChecked= true;
+        }
+
+        public EditWindow(Product product) {
+            InitializeComponent();
+            rBtnProduct.IsChecked = true;
+            foreach (var item in comboBoxChosenCategory.Items)
+            {
+                if(((CategoryOfProduct)item).id == product.categoryId)
+                {
+                    comboBoxChosenCategory.SelectedItem = item;
+                    textBoxChosenName.Text = product.name;
+                    textBoxKcalAmount.Text = Convert.ToString(product.numberOfCalories);
+                    if(product.measure == "stk")
+                    {
+                        textBoxChosenQuantity.Text = "1";
+                        labelChosenMeasure.Content = "stk";
+                    }
+                    else if(product.measure == "per 100 grams")
+                    {
+                        textBoxChosenQuantity.Text= "100";
+                        labelChosenMeasure.Content = "grams";
+                    }
+                    else
+                    {
+                        textBoxChosenQuantity.Text = "1";
+                        labelChosenMeasure.Content = "can/cans";
+                    }                    
+                    break;
+                }
+            }
         }
 
         private void btnOkClick(object sender, RoutedEventArgs e)
@@ -47,16 +73,16 @@ namespace TheUnknownGoose
                 long categId = (long)(comboBoxChosenCategory.SelectedItem as CategoryOfProduct).id;
                 string prodName = textBoxChosenName.Text;
                 int kcal = Convert.ToInt32(textBoxKcalAmount.Text);
-                string measure = textBoxChosenQuantity.Text + comboBoxChosenMeasure.Text;
-                EditProductInDatabase(categId, prodName, kcal, measure);
+                //string measure = textBoxChosenQuantity.Text + comboBoxChosenMeasure.Text;
+                //EditProductInDatabase(categId, prodName, kcal, measure);
             }
             else
             {
                 long categId = (long)(comboBoxChosenCategory.SelectedItem as CategoryOfDish).id;
                 string prodName = textBoxChosenName.Text;
                 int kcal = Convert.ToInt32(textBoxKcalAmount.Text);
-                string measure = textBoxChosenQuantity.Text + comboBoxChosenMeasure.Text;
-                EditDishInDatabase(categId, prodName, kcal, measure);
+                //string measure = textBoxChosenQuantity.Text + comboBoxChosenMeasure.Text;
+                //EditDishInDatabase(categId, prodName, kcal, measure);
             }
         }
 

@@ -26,8 +26,7 @@ namespace TheUnknownGoose
     {
         public AddWindow()
         {
-            InitializeComponent();
-            
+            InitializeComponent();            
         }
 
         private void btnCancelClick(object sender, RoutedEventArgs e)

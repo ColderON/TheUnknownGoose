@@ -52,6 +52,7 @@
                      Content="Product"
                      HorizontalAlignment="Right"                     
                      Margin="10,20,0,0"
+                     FontSize="12"
                      Checked="radiobtnProducts_Checked"/>
 
                 <Label Grid.Column="1"
@@ -66,6 +67,7 @@
                      Content="Dish"
                      HorizontalAlignment="Left"                    
                      Margin="0,20,0,0"
+                     FontSize="12"
                      Checked="radiobtnDishes_Checked"/>
 
             </Grid>
@@ -87,7 +89,8 @@
 
                 <Label Grid.Row="0" Grid.Column="0"
                        Content="Measure:"                       
-                       Margin="10,0,0,0"
+                       Margin="10,0,0,0" 
+                       FontSize="12"
                        VerticalAlignment="Bottom"/>
                 <TextBox x:Name="textBoxGramms" Grid.Row="1" Grid.Column="0"
                          Text=" Enter"
@@ -165,6 +168,7 @@
         <StackPanel Grid.Row="0" Grid.Column="3">
             <Button x:Name="btnAdd"               
                 Content="Add to list"
+                FontSize="12"
                 Foreground="Green"
                 Margin="10"
                 Height="30"
@@ -180,18 +184,20 @@
                   SelectionChanged="comboBoxChosenEntity_SelectionChanged"/>
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.Column="3">
-            <Button x:Name="btnDelete"             
-                Foreground="Red"
+            <Button x:Name="btnDelete" 
                 Content="Delete from list"
+                FontSize="12"
+                Foreground="Red"
                 Margin="10"
                 Height="30"
                 Click="btnDelete_Click" />
         </StackPanel>
 
         <StackPanel Grid.Row="2" Grid.Column="3">
-            <Button x:Name="btnClear"               
-                Foreground="Blue"
+            <Button x:Name="btnClear" 
                 Content="Clear list"
+                FontSize="12"
+                Foreground="Blue"                
                 Margin="10"
                 Height="50"
                 Click="btnClear_Click" />
