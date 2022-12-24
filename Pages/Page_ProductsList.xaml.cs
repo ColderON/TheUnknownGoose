@@ -22,9 +22,31 @@ namespace TheUnknownGoose
     /// </summary>
     public partial class Page_ProductsList : Page
     {
+        public static bool GetSeletctedType;
+
         public Page_ProductsList()
         {
             InitializeComponent();
+        }
+
+        public string GetSelectedCategory(string category)
+        {
+            return Convert.ToString(comboBoxChosenCategory.SelectedItem);
+        }
+        public string GetSelectedName(string name)
+        {
+            return Convert.ToString(listBoxShowChosenProducts.SelectedItem);
+        }
+        public int IsProductsSelected(int type)
+        {
+            if (radiobtnProducts.IsChecked == true)
+            {
+                return 1;
+            }
+            else
+            {
+                return 2;
+            }
         }
 
         private void comboBoxChosenCategory_Loaded(object sender, RoutedEventArgs e)
@@ -81,14 +103,12 @@ namespace TheUnknownGoose
         {
             AddWindow addWindow = new AddWindow();
             addWindow.Show();
-
-            
-
         }
 
         private void BtnEditClick(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            EditWindow editWindow = new EditWindow();
+            editWindow.Show();
         }
 
         private void BtnDeleteClick(object sender, RoutedEventArgs e)

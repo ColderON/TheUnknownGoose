@@ -47,9 +47,8 @@
                              Content="Product"
                              Margin="10"
                              GroupName="DishProduct"
-                             Checked="RBtnProductChecked"
                              Padding="0"
-                             HorizontalAlignment="Left"/>
+                             HorizontalAlignment="Left" Checked="rBtnProduct_Checked"/>
 
                     <RadioButton Grid.Column="1"
                              Grid.Row="0"
@@ -57,9 +56,8 @@
                              Content="Dish"
                              Margin="10"
                              GroupName="DishProduct"
-                             Checked="RBtnDishChecked"
                              Padding="0"
-                             HorizontalAlignment="Left"/>
+                             HorizontalAlignment="Left" Checked="rBtnDish_Checked"/>
                 </Grid>
             </StackPanel>
 
@@ -129,21 +127,26 @@
 
                     <TextBox Grid.Column="2"
                              Name="textBoxChosenQuantity"
-                             HorizontalAlignment="Right"
+                             HorizontalAlignment="Center"
                              VerticalAlignment="Center"
                              Width="50"
                              Text="0"
                              Height="20"
-                             Margin="40,10,3,10"/>
+                             Margin="010"/>
 
                     <ComboBox Grid.Column="3"
                               Name="comboBoxChosenMeasure"
                               VerticalAlignment="Center"
                               HorizontalAlignment="Right"
                               Margin="3,10,10,10"
-                              Width="100"
+                              Width="130"
                               Height="20"
-                              IsReadOnly="True"/>
+                              IsReadOnly="True"
+                              Padding="0">
+                        <ComboBoxItem Content="grams"/>
+                        <ComboBoxItem Content="milliliters"/>
+                        <ComboBoxItem Content="pcs"/>
+                    </ComboBox>
                 </Grid>
             </StackPanel>
 

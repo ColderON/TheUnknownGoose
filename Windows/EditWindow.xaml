@@ -47,7 +47,7 @@
                              Content="Product"
                              Margin="10"
                              GroupName="DishProduct"
-                             Checked="RBtnProductChecked"
+                             Checked="rBtnProduct_Checked"
                              Padding="0"
                              HorizontalAlignment="Left"/>
 
@@ -57,7 +57,7 @@
                              Content="Dish"
                              Margin="10"
                              GroupName="DishProduct"
-                             Checked="RBtnDishChecked"
+                             Checked="rBtnDish_Checked"
                              Padding="0"
                              HorizontalAlignment="Left"/>
                 </Grid>
@@ -137,7 +137,7 @@
                              Margin="40,10,3,10"/>
 
                     <ComboBox Grid.Column="3"
-                              Name="textBoxChosenMeasure"
+                              Name="comboBoxChosenMeasure"
                               VerticalAlignment="Center"
                               HorizontalAlignment="Right"
                               Margin="3,10,10,10"
@@ -172,7 +172,7 @@
                             Width="40"
                             Height="20"
                             IsDefault="True"
-                            Click="btnEditClick"
+                            Click="btnOkClick"
                             Margin="10"/>
                 </Grid>
             </StackPanel>
