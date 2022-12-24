@@ -88,12 +88,17 @@ namespace TheUnknownGoose
         private void btnClear_Click(object sender, RoutedEventArgs e)
         {            
             listBoxChosenProductsDishes.Items.Clear();
+            Dispatcher.Invoke(() =>
+            {
+                mainWindow.progBar.Value = 0;
+                mainWindow.lblCurrentCallorie.Content = "0";
+            });
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
+            // minus kcal?
             listBoxChosenProductsDishes.Items.Remove(listBoxChosenProductsDishes.SelectedItem);
-            
         }
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
@@ -101,55 +106,61 @@ namespace TheUnknownGoose
             int? ccal = 0;
             if (radiobtnDishes.IsChecked == true)
             {
-                Dish item = (Dish)comboBoxChosenEntity.SelectedItem;
-                if (radiobtnDishes.IsChecked == true)
-                {
-                    
-                    listBoxChosenProductsDishes.Items.Add(item + $"- {item.numberOfCalories * Convert.ToInt32(textBoxGramms.Text)} ccal per {textBoxGramms.Text} portions");
-                    ccal = item.numberOfCalories * Convert.ToInt32(textBoxGramms.Text);
+                if (comboBoxChosenEntity.SelectedIndex >= 0) {
+                    Dish item = (Dish)comboBoxChosenEntity.SelectedItem;
+                    if (radiobtnDishes.IsChecked == true)
+                    {                     
+                        listBoxChosenProductsDishes.Items.Add(item + $"- {item.numberOfCalories * Convert.ToInt32(textBoxGramms.Text)} ccal per {textBoxGramms.Text} portions");
+                        ccal = item.numberOfCalories * Convert.ToInt32(textBoxGramms.Text);
+                    }
                 }
             }
             else if (radiobtnProducts.IsChecked == true)
             {
-                Product item = (Product)comboBoxChosenEntity.SelectedItem;
-                if (radiobtnGramms.IsChecked == true)
-                {
-                    listBoxChosenProductsDishes.Items.Add(item + $"- {item.numberOfCalories * Convert.ToInt32(textBoxGramms.Text) / 100} ccal per {textBoxGramms.Text} gramms ");
-                    ccal=item.numberOfCalories * Convert.ToInt32(textBoxGramms.Text) / 100;
-                }
-                else if (radiobtnPieces.IsChecked == true)
-                {
-                    listBoxChosenProductsDishes.Items.Add(item + $"- {item.numberOfCalories * Convert.ToInt32(textBoxGramms.Text)} ccal per {textBoxGramms.Text}");
-                    ccal=item.numberOfCalories* Convert.ToInt32(textBoxGramms.Text);
-                }
-                else if (radiobtnCans.IsChecked == true)
-                {
-                    listBoxChosenProductsDishes.Items.Add(item + $"- {item.numberOfCalories * Convert.ToInt32(textBoxGramms.Text)} ccal per {textBoxGramms.Text} cans");
-                    ccal = item.numberOfCalories * Convert.ToInt32(textBoxGramms.Text);
+                if(comboBoxChosenEntity.SelectedIndex >= 0) {
+                    Product item = (Product)comboBoxChosenEntity.SelectedItem;
+                    if (radiobtnGramms.IsChecked == true)
+                    {
+                        listBoxChosenProductsDishes.Items.Add(item + $"- {item.numberOfCalories * Convert.ToInt32(textBoxGramms.Text) / 100} ccal per {textBoxGramms.Text} gramms ");
+                        ccal = item.numberOfCalories * Convert.ToInt32(textBoxGramms.Text) / 100;
+                    }
+                    else if (radiobtnPieces.IsChecked == true)
+                    {
+                        listBoxChosenProductsDishes.Items.Add(item + $"- {item.numberOfCalories * Convert.ToInt32(textBoxGramms.Text)} ccal per {textBoxGramms.Text}");
+                        ccal = item.numberOfCalories * Convert.ToInt32(textBoxGramms.Text);
+                    }
+                    else if (radiobtnCans.IsChecked == true)
+                    {
+                        listBoxChosenProductsDishes.Items.Add(item + $"- {item.numberOfCalories * Convert.ToInt32(textBoxGramms.Text)} ccal per {textBoxGramms.Text} cans");
+                        ccal = item.numberOfCalories * Convert.ToInt32(textBoxGramms.Text);
+                    }
                 }
             }
 
             Dispatcher.Invoke(() =>
             {
                 mainWindow.progBar.Value += (double)ccal;
+                int curKcal = Convert.ToInt32(mainWindow.lblCurrentCallorie.Content);
+                mainWindow.lblCurrentCallorie.Content = curKcal + ccal;
             });
-            
-           
         }
 
         private void radiobtnGramms_Checked(object sender, RoutedEventArgs e)
         {
             textBoxGramms.Text = "100";
+            lblMeasure.Content = "grams";
         }
 
         private void radiobtnPieces_Checked(object sender, RoutedEventArgs e)
         {
             textBoxGramms.Text = "1";
+            lblMeasure.Content = "stk";
         }
 
         private void radiobtnCans_Checked(object sender, RoutedEventArgs e)
         {
             textBoxGramms.Text = "1";
+            lblMeasure.Content = "cans";
         }
 
         private void comboBoxChosenEntity_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -168,24 +179,19 @@ namespace TheUnknownGoose
                     radiobtnGramms.IsChecked = true;
                     radiobtnCans.IsEnabled = false;
                     radiobtnPieces.IsEnabled = false;
-
-
                 }
                 if ((comboBoxChosenEntity.SelectedItem as Product).measure == "stk") {
                     radiobtnPieces.IsEnabled = true;
                     radiobtnPieces.IsChecked = true;
                     radiobtnCans.IsEnabled = false;
                     radiobtnGramms.IsEnabled = false;
-
                 }
                 if ((comboBoxChosenEntity.SelectedItem as Product).measure == "per 355 ml") {
                     radiobtnCans.IsEnabled = true;
                     radiobtnCans.IsChecked = true;
                     radiobtnPieces.IsEnabled = false;
                     radiobtnGramms.IsEnabled = false;
-
                 }
-                
             }
         }
     }

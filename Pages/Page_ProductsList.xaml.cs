@@ -60,7 +60,6 @@ namespace TheUnknownGoose
             comboBoxChosenCategory.SelectedIndex = 0;
             foreach (var a in Goose.categoryOfDishesList)
                 comboBoxChosenCategory.Items.Add(a);
-
         }
 
         private void radiobtnProducts_Checked(object sender, RoutedEventArgs e)

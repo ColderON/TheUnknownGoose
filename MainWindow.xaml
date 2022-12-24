@@ -11,11 +11,12 @@
         <Border DockPanel.Dock="Top" BorderBrush="Gray" BorderThickness="3"
                 Background="WhiteSmoke">
 
-            <Grid Background="AliceBlue" >
+            <Grid Background="LightGreen" >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="120"/>
                     <ColumnDefinition Width="120"/>
                     <ColumnDefinition Width="120"/>
+                    <ColumnDefinition Width="360"/>
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
 
@@ -25,7 +26,10 @@
                         Width="100" Height="30" HorizontalAlignment="Left" Margin="10" Click="btnAddItem_Click"/>
                 <Button x:Name="btnCalories" Grid.Column="2" Content="Calorie Counter" BorderBrush="LightGray"
                         Width="100" Height="30" HorizontalAlignment="Left" Margin="10" Click="btnCalories_Click"/>
-                <ProgressBar x:Name="progBar" Grid.Column="3" Margin="10" x:FieldModifier="public"/>
+                
+                <ProgressBar x:Name="progBar" Grid.ColumnSpan="4" Grid.Column="3" Margin="10" x:FieldModifier="public"/>
+                <Label x:Name="lblCurrentCallorie" Grid.Column="3" Content="0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                <Label x:Name="lblMaxCalorie" Grid.Column="4" Content="/ 2200" HorizontalAlignment="Left" VerticalAlignment="Center"/>
             </Grid>
         </Border>
 
