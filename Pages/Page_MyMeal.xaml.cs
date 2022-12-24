@@ -22,11 +22,11 @@ namespace TheUnknownGoose
     /// </summary>
     public partial class Page_MyMeal : Page
     {
-
+        public static MainWindow mainWindow = Application.Current.MainWindow as MainWindow;
         public Page_MyMeal()
         {
             InitializeComponent();            
-        }
+        }       
 
         private void comboBoxChosenCategory_Loaded(object sender, RoutedEventArgs e)
         {
@@ -47,8 +47,7 @@ namespace TheUnknownGoose
         }
 
         private void radiobtnProducts_Checked(object sender, RoutedEventArgs e)
-        {
-            
+        {            
             comboBoxChosenCategory.Items.Clear();
             comboBoxChosenCategory.SelectedIndex = 0;
             foreach (var a in Goose.categorOfProdList)
@@ -59,7 +58,6 @@ namespace TheUnknownGoose
             radiobtnPieces.IsChecked = false;
             radiobtnCans.IsChecked = false;
             radiobtnGramms.IsChecked = false;
-
         }
 
 
@@ -73,7 +71,6 @@ namespace TheUnknownGoose
                 {
                     if (a.categoryId == (comboBoxChosenCategory.SelectedItem as CategoryOfProduct).id)
                         comboBoxChosenEntity.Items.Add(a);
-
                 }
             }
 
@@ -83,14 +80,13 @@ namespace TheUnknownGoose
                 {
                     if (a.categoryId == (comboBoxChosenCategory.SelectedItem as CategoryOfDish).id)
                         comboBoxChosenEntity.Items.Add(a);
-
                 }
             }
 
         }
 
         private void btnClear_Click(object sender, RoutedEventArgs e)
-        {
+        {            
             listBoxChosenProductsDishes.Items.Clear();
         }
 
@@ -101,7 +97,7 @@ namespace TheUnknownGoose
         }
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
-        {
+        {            
             int? ccal = 0;
             if (radiobtnDishes.IsChecked == true)
             {
@@ -135,8 +131,7 @@ namespace TheUnknownGoose
 
             Dispatcher.Invoke(() =>
             {
-                MainWindow main = new MainWindow();
-                main.progBar.Value += (double)ccal;
+                mainWindow.progBar.Value += (double)ccal;
             });
             
            

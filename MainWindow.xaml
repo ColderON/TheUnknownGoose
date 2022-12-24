@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:TheUnknownGoose"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+
     <DockPanel>
         <Border DockPanel.Dock="Top" BorderBrush="Gray" BorderThickness="3"
                 Background="WhiteSmoke">
@@ -24,7 +25,7 @@
                         Width="100" Height="30" HorizontalAlignment="Left" Margin="10" Click="btnAddItem_Click"/>
                 <Button x:Name="btnCalories" Grid.Column="2" Content="Calorie Counter" BorderBrush="LightGray"
                         Width="100" Height="30" HorizontalAlignment="Left" Margin="10" Click="btnCalories_Click"/>
-                <ProgressBar x:Name="progBar" Grid.Column="3" IsEnabled="True" Margin="10" x:FieldModifier="public"/>
+                <ProgressBar x:Name="progBar" Grid.Column="3" Margin="10" x:FieldModifier="public"/>
             </Grid>
         </Border>
 

@@ -8,8 +8,11 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Page_MyMeal">
 
+    <!--<Page.DataContext>
+        <local:MainWindow/>
+    </Page.DataContext>-->
 
-    <Grid Background="Azure">
+    <Grid Background="Azure">        
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
             <ColumnDefinition />
@@ -127,5 +130,7 @@
                 Content="Clear list"
                 Margin="30,10,30,50"
                 Click="btnClear_Click" />
+
+        <!--<ProgressBar Value="{Binding progBar}"/>-->
     </Grid>
 </Page>
