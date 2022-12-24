@@ -31,7 +31,7 @@ namespace MyGooseLibrary.DatabaseClasses
 
         public override string ToString()
         {
-            return $"{name} - {numberOfCalories} kcal";
+            return $"{name}";
         }
     }
 }

@@ -21,7 +21,7 @@ namespace TheUnknownGoose
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
-    {
+    {       
         public MainWindow()
         {
             InitializeComponent();
@@ -30,10 +30,12 @@ namespace TheUnknownGoose
             Goose.FillCategorOfProdList();
             Goose.FillDishesList();
             Goose.FillProductsList();
+            progBar.Maximum = 2200;
+            progBar.Value = 0;
         }
 
         private void btnShowProductsList_Click(object sender, RoutedEventArgs e)
-        {                 
+        {
             MainPage.Content = new Page_MyMeal();
         }
 
