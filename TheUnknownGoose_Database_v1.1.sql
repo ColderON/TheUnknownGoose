@@ -37,6 +37,9 @@ Id bigint primary key identity,
 Name nvarchar(32) unique
 )
 
+insert into CategoriesOfDishes(Name)
+Values('Meat dishes'), ('Vegan')
+
 create table Dishes(
 Id bigint primary key identity,
 Name nvarchar(32) unique NOT NULL,
@@ -44,6 +47,9 @@ NumberOfCalories int NOT NULL,
 Comment nvarchar(256),
 CategoryId bigint foreign key references CategoriesOfDishes(Id) on update cascade
 );
+
+insert into Dishes(Name, NumberOfCalories, CategoryId)
+Values('Steak', 444, 1), ('Avocado Toast', 22,2)
 
 
 create procedure GetIdforList_CategProduct
