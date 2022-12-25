@@ -5,13 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TheUnknownGoose"
         mc:Ignorable="d"
-        Title="TheUknownGoose v1.0" Height="450" Width="800">
+        Title="TheUknownGoose v1.0" Height="550" Width="800">
 
     <DockPanel>
         <Border DockPanel.Dock="Top" BorderBrush="Gray" BorderThickness="3"
                 Background="WhiteSmoke">
 
-            <Grid Background="LightGreen" >
+            <Grid Background="#2E5266">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="120"/>
                     <ColumnDefinition Width="120"/>

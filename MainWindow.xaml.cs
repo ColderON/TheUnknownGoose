@@ -41,6 +41,7 @@ namespace TheUnknownGoose
             progBar.Value = 0;
             lblCurrentCallorie.Content = curCaloris;
             lblMaxCalorie.Content = maxCalories;
+            MainPage.Content = myMeal;
         }
 
         private void btnMyMeal_Click(object sender, RoutedEventArgs e)

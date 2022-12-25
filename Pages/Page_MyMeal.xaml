@@ -12,7 +12,7 @@
         <local:MainWindow/>
     </Page.DataContext>-->
 
-    <Grid Background="Azure">        
+    <Grid Background="#6E8898">        
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="220" />
             <ColumnDefinition />
@@ -26,6 +26,15 @@
             <RowDefinition />
         </Grid.RowDefinitions>
 
+        <Label VerticalAlignment="Center"
+               HorizontalAlignment="Center">
+            <TextBlock                
+                Text="My Menu"
+                FontStyle="Italic"
+                FontSize="20"
+                Foreground="#00203F"/>
+        </Label>
+
         <Border Grid.Column="1"
                 Grid.Row="0"
                 BorderBrush="LightGray"                
@@ -33,7 +42,7 @@
 
         <ListBox x:Name="listBoxChosenProductsDishes"
              Grid.Column="0"
-             Grid.Row="0"
+             Grid.Row="1"
              Grid.RowSpan="4"
              BorderThickness="3"
              Margin="10"/>
@@ -71,10 +80,7 @@
                      Checked="radiobtnDishes_Checked"/>
 
             </Grid>
-        </StackPanel>
-        
-
-       
+        </StackPanel>       
 
         <StackPanel Grid.Row="1" Grid.Column="1">
             <Grid>
