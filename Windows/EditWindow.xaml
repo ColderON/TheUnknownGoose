@@ -49,7 +49,8 @@
                              GroupName="DishProduct"
                              Checked="rBtnProduct_Checked"                            
                              HorizontalAlignment="Right"
-                             VerticalAlignment="Center"/>
+                             VerticalAlignment="Center"
+                                 IsEnabled="False"/>
 
                     <Label Grid.Column="2"
                            Content="/"
@@ -65,7 +66,8 @@
                              GroupName="DishProduct"
                              Checked="rBtnDish_Checked"
                              HorizontalAlignment="Left"
-                             VerticalAlignment="Center"/>
+                             VerticalAlignment="Center"
+                                 IsEnabled="False"/>
                 </Grid>
             </StackPanel>
 
@@ -89,7 +91,8 @@
                               HorizontalAlignment="Left"
                               VerticalAlignment="Center"
                               Width="210"
-                              IsReadOnly="True"/>
+                              IsReadOnly="True"
+                              IsEnabled="False"/>
                 </Grid>
             </StackPanel>
 

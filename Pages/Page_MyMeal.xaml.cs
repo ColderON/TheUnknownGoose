@@ -110,7 +110,7 @@ namespace TheUnknownGoose
                     Dish item = (Dish)comboBoxChosenEntity.SelectedItem;
                     if (radiobtnDishes.IsChecked == true)
                     {                     
-                        listBoxChosenProductsDishes.Items.Add(item + $"- {item.numberOfCalories * Convert.ToInt32(textBoxGramms.Text)} ccal per {textBoxGramms.Text} portions");
+                        listBoxChosenProductsDishes.Items.Add(item + $"- {item.numberOfCalories * Convert.ToInt32(textBoxGramms.Text)} kcal per {textBoxGramms.Text} portions");
                         ccal = item.numberOfCalories * Convert.ToInt32(textBoxGramms.Text);
                     }
                 }
@@ -121,17 +121,17 @@ namespace TheUnknownGoose
                     Product item = (Product)comboBoxChosenEntity.SelectedItem;
                     if (radiobtnGramms.IsChecked == true)
                     {
-                        listBoxChosenProductsDishes.Items.Add(item + $"- {item.numberOfCalories * Convert.ToInt32(textBoxGramms.Text) / 100} ccal per {textBoxGramms.Text} gramms ");
+                        listBoxChosenProductsDishes.Items.Add(item + $"- {item.numberOfCalories * Convert.ToInt32(textBoxGramms.Text) / 100} kcal per {textBoxGramms.Text} gramms ");
                         ccal = item.numberOfCalories * Convert.ToInt32(textBoxGramms.Text) / 100;
                     }
                     else if (radiobtnPieces.IsChecked == true)
                     {
-                        listBoxChosenProductsDishes.Items.Add(item + $"- {item.numberOfCalories * Convert.ToInt32(textBoxGramms.Text)} ccal per {textBoxGramms.Text}");
+                        listBoxChosenProductsDishes.Items.Add(item + $"- {item.numberOfCalories * Convert.ToInt32(textBoxGramms.Text)} kcal per {textBoxGramms.Text}");
                         ccal = item.numberOfCalories * Convert.ToInt32(textBoxGramms.Text);
                     }
                     else if (radiobtnCans.IsChecked == true)
                     {
-                        listBoxChosenProductsDishes.Items.Add(item + $"- {item.numberOfCalories * Convert.ToInt32(textBoxGramms.Text)} ccal per {textBoxGramms.Text} cans");
+                        listBoxChosenProductsDishes.Items.Add(item + $"- {item.numberOfCalories * Convert.ToInt32(textBoxGramms.Text)} kcal per {textBoxGramms.Text} cans");
                         ccal = item.numberOfCalories * Convert.ToInt32(textBoxGramms.Text);
                     }
                 }
@@ -160,7 +160,7 @@ namespace TheUnknownGoose
         private void radiobtnCans_Checked(object sender, RoutedEventArgs e)
         {
             textBoxGramms.Text = "1";
-            lblMeasure.Content = "cans";
+            lblMeasure.Content = "can/cans 355ml";
         }
 
         private void comboBoxChosenEntity_SelectionChanged(object sender, SelectionChangedEventArgs e)
