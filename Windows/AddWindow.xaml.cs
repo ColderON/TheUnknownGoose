@@ -26,7 +26,7 @@ namespace TheUnknownGoose
     {
         public AddWindow()
         {
-            InitializeComponent();            
+            InitializeComponent();
         }
 
         private void btnCancelClick(object sender, RoutedEventArgs e)
@@ -67,10 +67,9 @@ namespace TheUnknownGoose
                     }
                 }
                 long categId = (long)(comboBoxChosenCategory.SelectedItem as CategoryOfDish).id;
-                string prodName = textBoxChosenName.Text;
+                string dishName = textBoxChosenName.Text;
                 int kcal = Convert.ToInt32(textBoxKcalAmount.Text);
-                string measure = textBoxChosenQuantity.Text + comboBoxChosenMeasure.Text;
-                AddNewDishToDatabase(categId, prodName, kcal, measure);
+                AddNewDishToDatabase(categId, dishName, kcal);
             }
         }
 
@@ -80,7 +79,7 @@ namespace TheUnknownGoose
             Goose.cmd.CommandText = "Insert into Products(Name, NumberOfCalories, Measure, CategoryId)" +
                 "Values(@prodname, @kcal, @measure, @categid)";
 
-            Goose.cmd.Parameters.Add(new SqlParameter { 
+            Goose.cmd.Parameters.Add(new SqlParameter {
                 ParameterName = "categid",
                 DbType = System.Data.DbType.Int64,
                 Size = 64,
@@ -114,7 +113,6 @@ namespace TheUnknownGoose
             Goose.cmd.ExecuteNonQuery();
             AddNewProductToList(categid, prodname, kcal, measure);
         }
-
         private void AddNewProductToList(long categid, string prodname, int kcal, string measure)
         {
             Goose.cmd = Goose.connection.CreateCommand();
@@ -144,87 +142,79 @@ namespace TheUnknownGoose
                 id = (long)itemId.Value,
                 name = prodname,
                 numberOfCalories= kcal,
+                categoryId = categid,
                 measure = measure
-            });
-            CollectionViewSource.GetDefaultView(Goose.productsList).Refresh();
+            });            
             this.Close();
         }
 
-        private void AddNewDishToDatabase(long categid, string prodname, int kcal, string measure)
+        private void AddNewDishToDatabase(long categid, string dishname, int kcal)
         {
-            //Goose.cmd.CommandText = "Insert into Dishes(Name, NumberOfCalories, Measure, CategoryId)" +
-            //                        "Values(@categid, @prodname, @kcal, @measure)";
+            Goose.cmd = Goose.connection.CreateCommand();
+            Goose.cmd.CommandText = "Insert into Dishes(Name, NumberOfCalories, CategoryId)" +
+                                   "Values(@dishname, @kcal, @categid)";
 
-            //Goose.cmd.Parameters.Add(new SqlParameter
-            //{
-            //    ParameterName = "categid",
-            //    DbType = System.Data.DbType.Int64,
-            //    Size = 64,
-            //    Direction = ParameterDirection.Input,
-            //    Value = categid
-            //});
-            //Goose.cmd.Parameters.Add(new SqlParameter
-            //{
-            //    ParameterName = "prodname",
-            //    DbType = DbType.String,
-            //    Size = 32,
-            //    Direction = ParameterDirection.Input,
-            //    Value = prodname
-            //});
-            //Goose.cmd.Parameters.Add(new SqlParameter
-            //{
-            //    ParameterName = "kcal",
-            //    DbType = System.Data.DbType.Int32,
-            //    Size = 32,
-            //    Direction = ParameterDirection.Input,
-            //    Value = kcal
-            //});
-            //Goose.cmd.Parameters.Add(new SqlParameter
-            //{
-            //    ParameterName = "measure",
-            //    DbType = DbType.String,
-            //    Size = 32,
-            //    Direction = ParameterDirection.Input,
-            //    Value = measure
-            //});
-            //Goose.cmd.ExecuteNonQuery();
-            //AddNewDishToList(categid, prodname, kcal, measure);
+            Goose.cmd.Parameters.Add(new SqlParameter
+            {
+                ParameterName = "categid",
+                DbType = System.Data.DbType.Int64,
+                Size = 64,
+                Direction = ParameterDirection.Input,
+                Value = categid
+            });
+            Goose.cmd.Parameters.Add(new SqlParameter
+            {
+                ParameterName = "dishname",
+                DbType = DbType.String,
+                Size = 32,
+                Direction = ParameterDirection.Input,
+                Value = dishname
+            });
+            Goose.cmd.Parameters.Add(new SqlParameter
+            {
+                ParameterName = "kcal",
+                DbType = System.Data.DbType.Int32,
+                Size = 32,
+                Direction = ParameterDirection.Input,
+                Value = kcal
+            });
+            Goose.cmd.ExecuteNonQuery();
+            AddNewDishToList(categid, dishname, kcal);
         }
 
-        private void AddNewDishToList(long categid, string prodname, int kcal, string measure)
+        private void AddNewDishToList(long categid, string dishname, int kcal)
         {
-            //Goose.cmd = Goose.connection.CreateCommand();
-            //Goose.cmd.CommandType = CommandType.StoredProcedure;
-            //Goose.cmd.CommandText = "GetIdforList_Products";
+            Goose.cmd = Goose.connection.CreateCommand();
+            Goose.cmd.CommandType = CommandType.StoredProcedure;
+            Goose.cmd.CommandText = "GetIdforList_Dishes";
 
-            //Goose.cmd.Parameters.Add(new SqlParameter
-            //{
-            //    ParameterName = "itemName",
-            //    Direction = ParameterDirection.Input,
-            //    DbType = DbType.String,
-            //    Size = 32,
-            //    Value = prodname,
-            //});
+            Goose.cmd.Parameters.Add(new SqlParameter
+            {
+                ParameterName = "itemName",
+                Direction = ParameterDirection.Input,
+                DbType = DbType.String,
+                Size = 32,
+                Value = dishname,
+            });
 
-            //SqlParameter itemId = (new SqlParameter
-            //{
-            //    ParameterName = "itemId",
-            //    Direction = ParameterDirection.Output,
-            //    DbType = DbType.Int32,
-            //});
+            SqlParameter itemId = (new SqlParameter
+            {
+                ParameterName = "itemId",
+                Direction = ParameterDirection.Output,
+                DbType = DbType.Int64,
+            });
 
-            //Goose.cmd.Parameters.Add(itemId);
-            //Goose.cmd.ExecuteNonQuery();
+            Goose.cmd.Parameters.Add(itemId);
+            Goose.cmd.ExecuteNonQuery();
 
-            //Goose.productsList.Add(new Product
-            //{
-            //    id = (long)itemId.Value,
-            //    name = prodname,
-            //    numberOfCalories = kcal,
-            //    measure = measure
-            //});
-            //CollectionViewSource.GetDefaultView(Goose.dishesList).Refresh();
-            //this.Close();
+            Goose.dishesList.Add(new Dish
+            {
+                id = (long)itemId.Value,
+                name = dishname,
+                categoryId = categid,
+                numberOfCalories = kcal
+            });
+            this.Close();
         }
 
         private void rBtnDish_Checked(object sender, RoutedEventArgs e)
@@ -241,6 +231,11 @@ namespace TheUnknownGoose
             comboBoxChosenCategory.SelectedIndex = 0;
             foreach (var a in Goose.categorOfProdList)
                 comboBoxChosenCategory.Items.Add(a);
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
         }
     }
 }

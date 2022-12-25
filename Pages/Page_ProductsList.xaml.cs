@@ -15,6 +15,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using System.Runtime.CompilerServices;
+using System.ComponentModel;
 
 namespace TheUnknownGoose
 {
@@ -22,17 +24,16 @@ namespace TheUnknownGoose
     /// Interaction logic for Page_ProductsList.xaml
     /// </summary>
     public partial class Page_ProductsList : Page
-    {
-        //public static bool GetSeletctedType;
+    {       
         private DispatcherTimer dispatcherTimer = new DispatcherTimer();
 
         public Page_ProductsList()
         {   
             InitializeComponent();
 
-            dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
-            dispatcherTimer.Interval = new TimeSpan(0, 0, 3);
-            dispatcherTimer.Start();
+            //dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
+            //dispatcherTimer.Interval = new TimeSpan(0, 0, 3);
+            //dispatcherTimer.Start();
 
             btnEdit.IsEnabled= false;
             btnDelete.IsEnabled= false;
@@ -40,9 +41,7 @@ namespace TheUnknownGoose
 
         private void dispatcherTimer_Tick(object? sender, EventArgs e)
         {
-            CollectionViewSource.GetDefaultView(Goose.productsList).Refresh();
-            CollectionViewSource.GetDefaultView(comboBoxChosenCategory.Items).Refresh();
-            CollectionViewSource.GetDefaultView(listBoxShowChosenProducts.Items).Refresh();
+            //CollectionViewSource.GetDefaultView(listBoxShowChosenProducts.Items).Refresh();
         }
 
         public string GetSelectedCategory(string category)
@@ -53,20 +52,7 @@ namespace TheUnknownGoose
         {
             return Convert.ToString(listBoxShowChosenProducts.SelectedItem);
         }
-
-        //public int IsProductsSelected(int type)
-        //{
-        //    if (radiobtnProducts.IsChecked == true)
-        //    {
-        //        return 1;
-        //    }
-        //    else
-        //    {
-        //        return 2;
-        //    }
-        //}
-
-      
+       
 
         private void radiobtnDishes_Checked(object sender, RoutedEventArgs e)
         {            
@@ -87,7 +73,6 @@ namespace TheUnknownGoose
         private void comboBoxChosenCategory_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             listBoxShowChosenProducts.Items.Clear();
-
             if (radiobtnProducts.IsChecked == true)
             {
                 if(comboBoxChosenCategory.SelectedIndex >= 0)
@@ -115,20 +100,77 @@ namespace TheUnknownGoose
         private void BtnAddClick(object sender, RoutedEventArgs e)
         {
             AddWindow addWindow = new AddWindow();
+            addWindow.Closed += AddWindow_Closed;
             addWindow.Show();
+        }
+
+        private void AddWindow_Closed(object? sender, EventArgs e)
+        {
+            listBoxShowChosenProducts.Items.Clear();
+            if (radiobtnProducts.IsChecked == true && comboBoxChosenCategory.SelectedIndex >= 0)
+            {
+                foreach (var item in Goose.productsList)
+                {
+                    if (item.categoryId == (comboBoxChosenCategory.SelectedItem as CategoryOfProduct).id)
+                    {
+                        listBoxShowChosenProducts.Items.Add(item);
+                    }
+                }
+                MessageBox.Show("Done!");
+            }
+            else if (radiobtnDishes.IsChecked == true && comboBoxChosenCategory.SelectedIndex >= 0)
+            {
+                foreach (var item in Goose.dishesList)
+                {
+                    if (item.categoryId == (comboBoxChosenCategory.SelectedItem as CategoryOfDish).id)
+                    {
+                        listBoxShowChosenProducts.Items.Add(item);
+                    }
+                }
+                MessageBox.Show("Done!");
+            }
         }
 
         private void BtnEditClick(object sender, RoutedEventArgs e)
         {
             if (radiobtnProducts.IsChecked == true && listBoxShowChosenProducts.SelectedIndex >= 0)
             {
-                EditWindow window = new EditWindow((listBoxShowChosenProducts.SelectedItem as Product));
-                window.Show();
+                EditWindow editWindow = new EditWindow((listBoxShowChosenProducts.SelectedItem as Product));
+                editWindow.Show();
+                editWindow.Closed += EditWindow_Closed;
             }
             else if (radiobtnDishes.IsChecked == true && listBoxShowChosenProducts.SelectedIndex >= 0)
             {
-                EditWindow window = new EditWindow((listBoxShowChosenProducts.SelectedItem as Dish));
-                window.Show();
+                EditWindow editWindow = new EditWindow((listBoxShowChosenProducts.SelectedItem as Dish));
+                editWindow.Show();
+                editWindow.Closed += EditWindow_Closed;
+            }
+        }
+
+        private void EditWindow_Closed(object? sender, EventArgs e)
+        {
+            listBoxShowChosenProducts.Items.Clear();
+            if (radiobtnProducts.IsChecked == true && comboBoxChosenCategory.SelectedIndex >= 0)
+            {
+                foreach (var item in Goose.productsList)
+                {
+                    if (item.categoryId == (comboBoxChosenCategory.SelectedItem as CategoryOfProduct).id)
+                    {
+                        listBoxShowChosenProducts.Items.Add(item);
+                    }
+                }
+                MessageBox.Show("Done!");
+            }
+            else if (radiobtnDishes.IsChecked == true && comboBoxChosenCategory.SelectedIndex >= 0)
+            {
+                foreach (var item in Goose.dishesList)
+                {
+                    if (item.categoryId == (comboBoxChosenCategory.SelectedItem as CategoryOfDish).id)
+                    {
+                        listBoxShowChosenProducts.Items.Add(item);
+                    }
+                }
+                MessageBox.Show("Done!");
             }
         }
 
@@ -167,6 +209,14 @@ namespace TheUnknownGoose
                     break;
                 }
             }
+            listBoxShowChosenProducts.Items.Clear();
+            foreach (var item in Goose.productsList)
+            {               
+                if(item.categoryId == (comboBoxChosenCategory.SelectedItem as CategoryOfProduct).id)
+                {
+                    listBoxShowChosenProducts.Items.Add(item);
+                }
+            }
         }
 
         private void DeleteDish(Dish? dish)
@@ -180,6 +230,7 @@ namespace TheUnknownGoose
                 if (item.id == dish.id)
                 {
                     Goose.dishesList.Remove(item);
+                    CollectionViewSource.GetDefaultView(listBoxShowChosenProducts.Items).Refresh();
                     break;
                 }
             }
@@ -187,10 +238,25 @@ namespace TheUnknownGoose
 
         private void listBoxShowChosenProducts_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if(listBoxShowChosenProducts.SelectedIndex >= 0)
+            if (listBoxShowChosenProducts.SelectedIndex >= 0)
             {
                 btnEdit.IsEnabled= true;
-                btnDelete.IsEnabled = true;
+                btnDelete.IsEnabled= true;
+                if (radiobtnProducts.IsChecked == true)
+                {
+                    textBoxShowKcal.Text = Convert.ToString((listBoxShowChosenProducts.SelectedItem as Product).numberOfCalories);
+                    textBoxShowMeasure.Text = (listBoxShowChosenProducts.SelectedItem as Product).measure;
+                }
+                else if (radiobtnDishes.IsChecked == true)
+                {
+                    textBoxShowKcal.Text = Convert.ToString((listBoxShowChosenProducts.SelectedItem as Dish).numberOfCalories);
+                    textBoxShowMeasure.Text = "per portion";
+                }
+            }
+            else
+            {
+                textBoxShowKcal.Text = null;
+                textBoxShowMeasure.Text = null;
             }
         }
     }

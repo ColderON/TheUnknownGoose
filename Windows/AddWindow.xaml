@@ -13,7 +13,7 @@
         WindowStartupLocation="CenterOwner"
         ScrollViewer.VerticalScrollBarVisibility="Disabled"
         AutomationProperties.Name="AddWindow"
-        Topmost="True">
+        Topmost="True" Closing="Window_Closing">
 
     <DockPanel>
         <Grid>
@@ -143,9 +143,9 @@
                               Height="20"
                               IsReadOnly="True"
                               Padding="0">
-                        <ComboBoxItem Content="grams"/>
-                        <ComboBoxItem Content="milliliters"/>
-                        <ComboBoxItem Content="pcs"/>
+                        <ComboBoxItem Content="stk"/>
+                        <ComboBoxItem Content="per 100 grams"/>
+                        <ComboBoxItem Content="per 355 ml"/>
                     </ComboBox>
                 </Grid>
             </StackPanel>
