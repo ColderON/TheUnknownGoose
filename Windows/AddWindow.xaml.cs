@@ -221,21 +221,22 @@ namespace TheUnknownGoose
         {
             comboBoxChosenCategory.Items.Clear();
             comboBoxChosenCategory.SelectedIndex = 0;
-            foreach (var a in Goose.categoryOfDishesList)
-                comboBoxChosenCategory.Items.Add(a);
+            foreach (var a in Goose.categoryOfDishesList) { comboBoxChosenCategory.Items.Add(a); }
+            comboBoxChosenMeasure.Items.Clear();
+            comboBoxChosenMeasure.Items.Add("portion");
+            comboBoxChosenMeasure.SelectedIndex = 0;
         }
 
         private void rBtnProduct_Checked(object sender, RoutedEventArgs e)
         {
             comboBoxChosenCategory.Items.Clear();
             comboBoxChosenCategory.SelectedIndex = 0;
-            foreach (var a in Goose.categorOfProdList)
-                comboBoxChosenCategory.Items.Add(a);
-        }
-
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-
+            foreach (var a in Goose.categorOfProdList) { comboBoxChosenCategory.Items.Add(a); }
+            comboBoxChosenMeasure.Items.Clear();
+            comboBoxChosenMeasure.Items.Add("stk");
+            comboBoxChosenMeasure.Items.Add("grams");
+            comboBoxChosenMeasure.Items.Add("per 355 ml");
+            comboBoxChosenMeasure.SelectedIndex= 0;
         }
     }
 }

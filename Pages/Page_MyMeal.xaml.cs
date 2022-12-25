@@ -14,23 +14,21 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TheUnknownGoose.MyGooseLibrary.DatabaseClasses;
 
 namespace TheUnknownGoose
 {
     /// <summary>
     /// Interaction logic for Page_MyMeal.xaml
-    /// </summary>
+    /// </summary> 
+
     public partial class Page_MyMeal : Page
     {
         public static MainWindow mainWindow = Application.Current.MainWindow as MainWindow;
+
         public Page_MyMeal()
         {
             InitializeComponent();            
-        }       
-
-        private void comboBoxChosenCategory_Loaded(object sender, RoutedEventArgs e)
-        {
-            
         }
 
         private void radiobtnDishes_Checked(object sender, RoutedEventArgs e)
@@ -43,7 +41,6 @@ namespace TheUnknownGoose
             radiobtnPieces.IsChecked = true;
             radiobtnCans.IsEnabled = false;
             radiobtnGramms.IsEnabled = false;
-
         }
 
         private void radiobtnProducts_Checked(object sender, RoutedEventArgs e)
@@ -64,7 +61,6 @@ namespace TheUnknownGoose
         private void comboBoxChosenCategory_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             comboBoxChosenEntity.Items.Clear();
-            //comboBoxChosenEntity.SelectedIndex = 0;
             if (radiobtnProducts.IsChecked == true && comboBoxChosenCategory.SelectedIndex >= 0)
             {
                 foreach (var a in Goose.productsList)
@@ -82,7 +78,6 @@ namespace TheUnknownGoose
                         comboBoxChosenEntity.Items.Add(a);
                 }
             }
-
         }
 
         private void btnClear_Click(object sender, RoutedEventArgs e)
@@ -91,27 +86,46 @@ namespace TheUnknownGoose
             Dispatcher.Invoke(() =>
             {
                 mainWindow.progBar.Value = 0;
-                mainWindow.lblCurrentCallorie.Content = "0";
+                mainWindow.curCaloris = 0;
+                mainWindow.lblCurrentCallorie.Content = mainWindow.curCaloris;
+                mainWindow.lblMaxCalorie.Content = mainWindow.maxCalories;
+                mainWindow.lblCurrentCallorie.Foreground = Brushes.Black;               
             });
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-            // minus kcal?
+            mainWindow.curCaloris -= (double)(listBoxChosenProductsDishes.SelectedItem as VM).numberOfCalories;
+            mainWindow.progBar.Value = mainWindow.curCaloris;
+            mainWindow.lblCurrentCallorie.Content = mainWindow.curCaloris;
+            mainWindow.lblMaxCalorie.Content = mainWindow.maxCalories;
+            if (mainWindow.curCaloris <= mainWindow.maxCalories)
+            {
+                mainWindow.lblCurrentCallorie.Foreground = Brushes.Black;
+            }
             listBoxChosenProductsDishes.Items.Remove(listBoxChosenProductsDishes.SelectedItem);
         }
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {            
-            int? ccal = 0;
+            int? kcal = 0;
             if (radiobtnDishes.IsChecked == true)
             {
                 if (comboBoxChosenEntity.SelectedIndex >= 0) {
                     Dish item = (Dish)comboBoxChosenEntity.SelectedItem;
                     if (radiobtnDishes.IsChecked == true)
-                    {                     
-                        listBoxChosenProductsDishes.Items.Add(item + $"- {item.numberOfCalories * Convert.ToInt32(textBoxGramms.Text)} kcal per {textBoxGramms.Text} portions");
-                        ccal = item.numberOfCalories * Convert.ToInt32(textBoxGramms.Text);
+                    {
+                        listBoxChosenProductsDishes.Items.Add(new VM
+                        {
+                            id = (comboBoxChosenEntity.SelectedItem as Dish).id,
+                            name = (comboBoxChosenEntity.SelectedItem as Dish).name,
+                            measure = "portion(s)",
+                            numberOfCalories = item.numberOfCalories * Convert.ToInt32(textBoxGramms.Text),
+                            categoryId = (comboBoxChosenEntity.SelectedItem as Dish).categoryId,
+                            countOfitems = Convert.ToInt32(textBoxGramms.Text)
+                        });
+                        //listBoxChosenProductsDishes.Items.Add(item + $"- {item.numberOfCalories * Convert.ToInt32(textBoxGramms.Text)} kcal per {textBoxGramms.Text} portions");
+                        kcal = item.numberOfCalories * Convert.ToInt32(textBoxGramms.Text);
                     }
                 }
             }
@@ -121,27 +135,59 @@ namespace TheUnknownGoose
                     Product item = (Product)comboBoxChosenEntity.SelectedItem;
                     if (radiobtnGramms.IsChecked == true)
                     {
-                        listBoxChosenProductsDishes.Items.Add(item + $"- {item.numberOfCalories * Convert.ToInt32(textBoxGramms.Text) / 100} kcal per {textBoxGramms.Text} gramms ");
-                        ccal = item.numberOfCalories * Convert.ToInt32(textBoxGramms.Text) / 100;
+                        listBoxChosenProductsDishes.Items.Add(new VM
+                        {
+                            id = (comboBoxChosenEntity.SelectedItem as Product).id,
+                            name = (comboBoxChosenEntity.SelectedItem as Product).name,
+                            measure = (comboBoxChosenEntity.SelectedItem as Product).measure,
+                            numberOfCalories = item.numberOfCalories * Convert.ToInt32(textBoxGramms.Text) / 100,
+                            categoryId = (comboBoxChosenEntity.SelectedItem as Product).categoryId,
+                            countOfitems = Convert.ToInt32(textBoxGramms.Text)
+                        });
+                        //listBoxChosenProductsDishes.Items.Add(item + $"- {item.numberOfCalories * Convert.ToInt32(textBoxGramms.Text) / 100} kcal per {textBoxGramms.Text} gramms ");
+                        kcal = item.numberOfCalories * Convert.ToInt32(textBoxGramms.Text) / 100;
                     }
                     else if (radiobtnPieces.IsChecked == true)
                     {
-                        listBoxChosenProductsDishes.Items.Add(item + $"- {item.numberOfCalories * Convert.ToInt32(textBoxGramms.Text)} kcal per {textBoxGramms.Text}");
-                        ccal = item.numberOfCalories * Convert.ToInt32(textBoxGramms.Text);
+                        listBoxChosenProductsDishes.Items.Add(new VM
+                        {
+                            id = (comboBoxChosenEntity.SelectedItem as Product).id,
+                            name = (comboBoxChosenEntity.SelectedItem as Product).name,
+                            measure = (comboBoxChosenEntity.SelectedItem as Product).measure,
+                            numberOfCalories = item.numberOfCalories * Convert.ToInt32(textBoxGramms.Text),
+                            categoryId = (comboBoxChosenEntity.SelectedItem as Product).categoryId,
+                            countOfitems = Convert.ToInt32(textBoxGramms.Text)
+                        });
+                        //listBoxChosenProductsDishes.Items.Add(item + $"- {item.numberOfCalories * Convert.ToInt32(textBoxGramms.Text)} kcal per {textBoxGramms.Text}");
+                        kcal = item.numberOfCalories * Convert.ToInt32(textBoxGramms.Text);
                     }
                     else if (radiobtnCans.IsChecked == true)
                     {
-                        listBoxChosenProductsDishes.Items.Add(item + $"- {item.numberOfCalories * Convert.ToInt32(textBoxGramms.Text)} kcal per {textBoxGramms.Text} cans");
-                        ccal = item.numberOfCalories * Convert.ToInt32(textBoxGramms.Text);
+                        listBoxChosenProductsDishes.Items.Add(new VM
+                        {
+                            id = (comboBoxChosenEntity.SelectedItem as Product).id,
+                            name = (comboBoxChosenEntity.SelectedItem as Product).name,
+                            measure = (comboBoxChosenEntity.SelectedItem as Product).measure,
+                            numberOfCalories = item.numberOfCalories * Convert.ToInt32(textBoxGramms.Text),
+                            categoryId = (comboBoxChosenEntity.SelectedItem as Product).categoryId,
+                            countOfitems = Convert.ToInt32(textBoxGramms.Text)
+                        });
+                        //listBoxChosenProductsDishes.Items.Add(item + $"- {item.numberOfCalories * Convert.ToInt32(textBoxGramms.Text)} kcal per {textBoxGramms.Text} cans");
+                        kcal = item.numberOfCalories * Convert.ToInt32(textBoxGramms.Text);
                     }
                 }
             }
 
             Dispatcher.Invoke(() =>
             {
-                mainWindow.progBar.Value += (double)ccal;
-                int curKcal = Convert.ToInt32(mainWindow.lblCurrentCallorie.Content);
-                mainWindow.lblCurrentCallorie.Content = curKcal + ccal;
+                mainWindow.progBar.Value += (double)kcal;
+                mainWindow.curCaloris += (double)kcal;
+                mainWindow.lblCurrentCallorie.Content = mainWindow.curCaloris;
+                mainWindow.lblMaxCalorie.Content = mainWindow.maxCalories;
+                if (mainWindow.curCaloris > mainWindow.maxCalories)
+                {
+                    mainWindow.lblCurrentCallorie.Foreground = Brushes.Red;
+                }
             });
         }
 

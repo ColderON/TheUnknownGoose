@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TheUnknownGoose"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="TheUknownGoose v1.0" Height="450" Width="800">
 
     <DockPanel>
         <Border DockPanel.Dock="Top" BorderBrush="Gray" BorderThickness="3"
@@ -17,6 +17,7 @@
                     <ColumnDefinition Width="120"/>
                     <ColumnDefinition Width="120"/>
                     <ColumnDefinition Width="360"/>
+                    <ColumnDefinition Width="15"/>
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
 
@@ -28,8 +29,9 @@
                         Width="100" Height="30" HorizontalAlignment="Left" Margin="10" Click="btnCalories_Click"/>
                 
                 <ProgressBar x:Name="progBar" Grid.ColumnSpan="4" Grid.Column="3" Margin="10" x:FieldModifier="public"/>
-                <Label x:Name="lblCurrentCallorie" Grid.Column="3" Content="0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
-                <Label x:Name="lblMaxCalorie" Grid.Column="4" Content="/ 2200" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <Label x:Name="lblCurrentCallorie" Grid.Column="3" Content="0" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0"/>
+                <Label x:Name="lblslash" Grid.Column="4" Content="/" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0"/>
+                <Label x:Name="lblMaxCalorie" Grid.Column="5" Content="2200" HorizontalAlignment="Left" VerticalAlignment="Center" Padding="0"/>
             </Grid>
         </Border>
 

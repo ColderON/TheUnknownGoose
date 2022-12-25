@@ -25,23 +25,11 @@ namespace TheUnknownGoose
     /// </summary>
     public partial class Page_ProductsList : Page
     {       
-        private DispatcherTimer dispatcherTimer = new DispatcherTimer();
-
         public Page_ProductsList()
         {   
             InitializeComponent();
-
-            //dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
-            //dispatcherTimer.Interval = new TimeSpan(0, 0, 3);
-            //dispatcherTimer.Start();
-
             btnEdit.IsEnabled= false;
             btnDelete.IsEnabled= false;
-        }
-
-        private void dispatcherTimer_Tick(object? sender, EventArgs e)
-        {
-            //CollectionViewSource.GetDefaultView(listBoxShowChosenProducts.Items).Refresh();
         }
 
         public string GetSelectedCategory(string category)
@@ -135,13 +123,14 @@ namespace TheUnknownGoose
         {
             if (radiobtnProducts.IsChecked == true && listBoxShowChosenProducts.SelectedIndex >= 0)
             {
-                EditWindow editWindow = new EditWindow((listBoxShowChosenProducts.SelectedItem as Product));
+                EditWindow editWindow = new EditWindow((listBoxShowChosenProducts.SelectedItem as Product));                
                 editWindow.Show();
                 editWindow.Closed += EditWindow_Closed;
+
             }
             else if (radiobtnDishes.IsChecked == true && listBoxShowChosenProducts.SelectedIndex >= 0)
             {
-                EditWindow editWindow = new EditWindow((listBoxShowChosenProducts.SelectedItem as Dish));
+                EditWindow editWindow = new EditWindow((listBoxShowChosenProducts.SelectedItem as Dish));              
                 editWindow.Show();
                 editWindow.Closed += EditWindow_Closed;
             }
@@ -149,29 +138,7 @@ namespace TheUnknownGoose
 
         private void EditWindow_Closed(object? sender, EventArgs e)
         {
-            listBoxShowChosenProducts.Items.Clear();
-            if (radiobtnProducts.IsChecked == true && comboBoxChosenCategory.SelectedIndex >= 0)
-            {
-                foreach (var item in Goose.productsList)
-                {
-                    if (item.categoryId == (comboBoxChosenCategory.SelectedItem as CategoryOfProduct).id)
-                    {
-                        listBoxShowChosenProducts.Items.Add(item);
-                    }
-                }
-                MessageBox.Show("Done!");
-            }
-            else if (radiobtnDishes.IsChecked == true && comboBoxChosenCategory.SelectedIndex >= 0)
-            {
-                foreach (var item in Goose.dishesList)
-                {
-                    if (item.categoryId == (comboBoxChosenCategory.SelectedItem as CategoryOfDish).id)
-                    {
-                        listBoxShowChosenProducts.Items.Add(item);
-                    }
-                }
-                MessageBox.Show("Done!");
-            }
+            CollectionViewSource.GetDefaultView(listBoxShowChosenProducts.Items).Refresh();
         }
 
         private void BtnDeleteClick(object sender, RoutedEventArgs e)

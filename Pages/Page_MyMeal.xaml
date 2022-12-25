@@ -162,7 +162,6 @@
                   Text="Category"
                   Height="30"
                   Margin="10"
-                  Loaded="comboBoxChosenCategory_Loaded"
                   SelectionChanged="comboBoxChosenCategory_SelectionChanged" />
         </StackPanel>        
         <StackPanel Grid.Row="0" Grid.Column="3">
