@@ -75,19 +75,15 @@ namespace TheUnknownGoose
             return false;
         }
 
-
-
         private void btnConfirm_Click(object sender, RoutedEventArgs e)
         {
             if (checkIfGenderPicked() && checkIfWeightEntered() && checkIfHeightEntered() && checkIfAgeEntered() && checkIfGoalChosen()) {
                 if (radiobtnMale.IsChecked == true)
                 {
-                    result=10* Convert.ToInt32(textBoxWeight.Text) + 6.25 * Convert.ToInt32(textBoxHeight.Text) + 5 * Convert.ToInt32(textBoxAge.Text) +5;
-                    
+                    result=10* Convert.ToInt32(textBoxWeight.Text) + 6.25 * Convert.ToInt32(textBoxHeight.Text) + 5 * Convert.ToInt32(textBoxAge.Text) +5;                    
                 }
                 else {
-                    result = 10 * Convert.ToInt32(textBoxWeight.Text) + 6.25 * Convert.ToInt32(textBoxHeight.Text) + 5 * Convert.ToInt32(textBoxAge.Text) -161;
-                    
+                    result = 10 * Convert.ToInt32(textBoxWeight.Text) + 6.25 * Convert.ToInt32(textBoxHeight.Text) + 5 * Convert.ToInt32(textBoxAge.Text) -161;                    
                 }
             }
             switch (goal) {
