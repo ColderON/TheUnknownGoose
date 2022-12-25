@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -35,7 +36,14 @@ namespace TheUnknownGoose
         }
 
         private void btnAddClick(object sender, RoutedEventArgs e)
-        {           
+        {
+
+            string numbersCheck = textBoxChosenQuantity.Text + textBoxKcalAmount.Text;
+            if (Goose.CheckForNumbers(numbersCheck) == false)
+            {
+                return;
+            }
+
             bool duplicateFound = false;
 
             if (rBtnProduct.IsChecked == true )

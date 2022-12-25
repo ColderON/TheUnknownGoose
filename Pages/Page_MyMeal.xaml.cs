@@ -109,6 +109,11 @@ namespace TheUnknownGoose
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {            
             int? kcal = 0;
+            if (Goose.CheckForNumbers(textBoxGramms.Text) == false)
+            {
+                return;
+            }
+
             if (radiobtnDishes.IsChecked == true)
             {
                 if (comboBoxChosenEntity.SelectedIndex >= 0) {

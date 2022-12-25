@@ -104,7 +104,6 @@ namespace TheUnknownGoose
                         listBoxShowChosenProducts.Items.Add(item);
                     }
                 }
-                MessageBox.Show("Done!");
             }
             else if (radiobtnDishes.IsChecked == true && comboBoxChosenCategory.SelectedIndex >= 0)
             {
@@ -115,7 +114,6 @@ namespace TheUnknownGoose
                         listBoxShowChosenProducts.Items.Add(item);
                     }
                 }
-                MessageBox.Show("Done!");
             }
         }
 

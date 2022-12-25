@@ -8,6 +8,8 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
 
 namespace MyGooseLibrary
 {
@@ -211,6 +213,19 @@ namespace MyGooseLibrary
             cmd.ExecuteNonQuery();
 
             return (long)itemId.Value;
+        }
+
+        public static bool CheckForNumbers(string tbText)
+        {
+            if (tbText != $"^[0-9]+$")
+            {
+                MessageBox.Show("Some of the textboxes contains letters", "Error!", MessageBoxButton.OK, icon:MessageBoxImage.Error);
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
 
         ////TOCHECK

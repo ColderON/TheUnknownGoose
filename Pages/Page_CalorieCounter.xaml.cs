@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyGooseLibrary;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -77,6 +78,12 @@ namespace TheUnknownGoose
 
         private void btnConfirm_Click(object sender, RoutedEventArgs e)
         {
+            string numbersCheck= textBoxAge.Text+textBoxHeight.Text+textBoxWeight.Text;
+            if (Goose.CheckForNumbers(numbersCheck) == false)
+            {
+                return;
+            }
+
             if (checkIfGenderPicked() && checkIfWeightEntered() && checkIfHeightEntered() && checkIfAgeEntered() && checkIfGoalChosen()) {
                 if (radiobtnMale.IsChecked == true)
                 {

@@ -87,6 +87,12 @@ namespace TheUnknownGoose
 
         private void btnOkClick(object sender, RoutedEventArgs e)
         {
+            string numbersCheck = textBoxChosenQuantity.Text + textBoxKcalAmount.Text;
+            if (Goose.CheckForNumbers(numbersCheck) == false)
+            {
+                return;
+            }
+
             if (rBtnProduct.IsChecked == true)
             {
                 string prodName = textBoxChosenName.Text;
@@ -120,7 +126,8 @@ namespace TheUnknownGoose
 
         private void EditProductInDatabase(string prodname, int kcal)
         {
-            if(tempProd.name == prodname)
+
+            if (tempProd.name == prodname)
             {
                 Goose.cmd = Goose.connection.CreateCommand();
                 Goose.cmd.CommandText = $"Update Products Set NumberOfCalories = @kcal where Id = {tempProd.id}";
