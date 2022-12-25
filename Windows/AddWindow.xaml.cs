@@ -37,7 +37,6 @@ namespace TheUnknownGoose
 
         private void btnAddClick(object sender, RoutedEventArgs e)
         {
-
             string numbersCheck = textBoxChosenQuantity.Text + textBoxKcalAmount.Text;
             if (Goose.CheckForNumbers(numbersCheck) == false)
             {
@@ -58,9 +57,21 @@ namespace TheUnknownGoose
                     }
                 }
                 long categId = (long)(comboBoxChosenCategory.SelectedItem as CategoryOfProduct).id;
-                string prodName = textBoxChosenName.Text;
-                int kcal = Convert.ToInt32(textBoxKcalAmount.Text);
-                string measure = textBoxChosenQuantity.Text + comboBoxChosenMeasure.Text;
+                string prodName = textBoxChosenName.Text;               
+                string measure = comboBoxChosenMeasure.Text;
+                int kcal = 0;
+                if (comboBoxChosenMeasure.SelectedValue == "stk")
+                {
+                    kcal = Convert.ToInt32(textBoxKcalAmount.Text) / Convert.ToInt32(textBoxChosenQuantity.Text);
+                }
+                else if(comboBoxChosenMeasure.SelectedValue == "grams")
+                {
+                    kcal = (Convert.ToInt32(textBoxKcalAmount.Text) / Convert.ToInt32(textBoxChosenQuantity.Text) * 100);
+                }
+                else
+                {
+                    kcal = Convert.ToInt32(textBoxKcalAmount.Text) / Convert.ToInt32(textBoxChosenQuantity.Text);
+                }               
                 AddNewProductToDatabase(categId, prodName, kcal, measure);
             }
             else
@@ -123,31 +134,9 @@ namespace TheUnknownGoose
         }
         private void AddNewProductToList(long categid, string prodname, int kcal, string measure)
         {
-            Goose.cmd = Goose.connection.CreateCommand();
-            Goose.cmd.CommandType = CommandType.StoredProcedure;
-            Goose.cmd.CommandText = "GetIdforList_Products";
-
-            Goose.cmd.Parameters.Add(new SqlParameter
-            {
-                ParameterName = "itemName",
-                Direction = ParameterDirection.Input,
-                DbType = DbType.String,
-                Size = 32,
-                Value = prodname,
-            });
-
-            SqlParameter itemId = (new SqlParameter
-            {
-                ParameterName = "itemId",
-                Direction = ParameterDirection.Output,
-                DbType = DbType.Int64,
-            });
-
-            Goose.cmd.Parameters.Add(itemId);
-            Goose.cmd.ExecuteNonQuery();
-            
+            long tempId =  Goose.GetIdProduct(prodname);            
             Goose.productsList.Add(new Product {
-                id = (long)itemId.Value,
+                id = tempId,
                 name = prodname,
                 numberOfCalories= kcal,
                 categoryId = categid,
@@ -192,32 +181,10 @@ namespace TheUnknownGoose
 
         private void AddNewDishToList(long categid, string dishname, int kcal)
         {
-            Goose.cmd = Goose.connection.CreateCommand();
-            Goose.cmd.CommandType = CommandType.StoredProcedure;
-            Goose.cmd.CommandText = "GetIdforList_Dishes";
-
-            Goose.cmd.Parameters.Add(new SqlParameter
-            {
-                ParameterName = "itemName",
-                Direction = ParameterDirection.Input,
-                DbType = DbType.String,
-                Size = 32,
-                Value = dishname,
-            });
-
-            SqlParameter itemId = (new SqlParameter
-            {
-                ParameterName = "itemId",
-                Direction = ParameterDirection.Output,
-                DbType = DbType.Int64,
-            });
-
-            Goose.cmd.Parameters.Add(itemId);
-            Goose.cmd.ExecuteNonQuery();
-
+            long tempId = Goose.GetIdDish(dishname);
             Goose.dishesList.Add(new Dish
             {
-                id = (long)itemId.Value,
+                id = tempId,
                 name = dishname,
                 categoryId = categid,
                 numberOfCalories = kcal
