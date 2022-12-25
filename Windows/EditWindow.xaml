@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:TheUnknownGoose"
         mc:Ignorable="d"
         Title="Edit Product"
-        Height="200"
-        Width="300"
+        Height="220"
+        Width="320"
         ShowInTaskbar="False"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterOwner"
@@ -25,58 +25,64 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
-            <StackPanel Grid.Row="0"
-                        DockPanel.Dock="Top">
+            <StackPanel Grid.Row="0">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
+                        <ColumnDefinition Width="60"/>
+                        <ColumnDefinition Width="95"/>
+                        <ColumnDefinition Width="20"/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
 
                     <Label Grid.Column="0"
                            Content="Type:"
-                           HorizontalAlignment="Right"
+                           FontSize="12"
                            Margin="10"
                            VerticalAlignment="Center"
-                           Padding="0"/>
+                           HorizontalAlignment="Right"/>
 
-                    <RadioButton Grid.Column="2"
-                             Grid.Row="0" 
+                    <RadioButton Grid.Column="1"                             
                              Name="rBtnProduct"
                              Content="Product"
+                             FontSize="12"
                              Margin="10"
                              GroupName="DishProduct"
-                             Checked="rBtnProduct_Checked"
-                             Padding="0"
-                             HorizontalAlignment="Left"/>
+                             Checked="rBtnProduct_Checked"                            
+                             HorizontalAlignment="Right"
+                             VerticalAlignment="Center"
+                                 IsEnabled="False"/>
 
-                    <RadioButton Grid.Column="1"
-                             Grid.Row="0"
+                    <Label Grid.Column="2"
+                           Content="/"
+                           FontSize="12"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"/>
+
+                    <RadioButton Grid.Column="3"
                              Name="rBtnDish"
                              Content="Dish"
+                             FontSize="12"
                              Margin="10"
                              GroupName="DishProduct"
                              Checked="rBtnDish_Checked"
-                             Padding="0"
-                             HorizontalAlignment="Left"/>
+                             HorizontalAlignment="Left"
+                             VerticalAlignment="Center"
+                                 IsEnabled="False"/>
                 </Grid>
             </StackPanel>
 
-            <StackPanel Grid.Row="1"
-                        DockPanel.Dock="Top">
+            <StackPanel Grid.Row="1">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
+                        <ColumnDefinition Width="85"/>
+                        <ColumnDefinition/>                        
                     </Grid.ColumnDefinitions>
 
                     <Label Grid.Column="0"
-                           Content="Category"
+                           Content="Category:"
                            VerticalAlignment="Center"
-                           FontSize="13"
-                           Padding="0"
+                           HorizontalAlignment="Center"
+                           FontSize="12"
                            Margin="10"/>
 
                     <ComboBox Grid.Column="1"
@@ -84,40 +90,37 @@
                               Name="comboBoxChosenCategory"
                               HorizontalAlignment="Left"
                               VerticalAlignment="Center"
-                              Width="188"
-                              Height="20"
-                              IsReadOnly="True"/>
+                              Width="210"
+                              IsReadOnly="True"
+                              IsEnabled="False"/>
                 </Grid>
             </StackPanel>
 
-            <StackPanel Grid.Row="2"
-                        DockPanel.Dock="Top">
-                <TextBox MinWidth="280"
-                         Name="textBoxChosenName"
-                         TextWrapping="NoWrap"
+            <StackPanel Grid.Row="2" Width="305">
+                <TextBox MinWidth="285"
+                         Height="20"
+                         Name="textBoxChosenName"                        
                          VerticalAlignment="Center"
                          HorizontalAlignment="Center"
                          Text="Name"
-                         Margin="0,10,0,10"
-                         Padding="0"/>
+                         Margin="10"/>
             </StackPanel>
 
-            <StackPanel Grid.Row="3"
-                        DockPanel.Dock="Top">
+            <StackPanel Grid.Row="3">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="35"/>
+                        <ColumnDefinition Width="35"/>
+                        <ColumnDefinition Width="40"/>
+                        <ColumnDefinition Width="110"/>
                     </Grid.ColumnDefinitions>
 
                     <TextBox Grid.Column="0"
                              Name="textBoxKcalAmount"
-                             HorizontalAlignment="Left"
+                             HorizontalAlignment="Center"
                              VerticalAlignment="Center"
-                             Width="40"
-                             Height="20"
+                             Width="60"                             
                              Margin="10,10,3,10"/>
 
                     <Label Grid.Column="1"
@@ -127,28 +130,38 @@
                            Padding="0"
                            Width="21"/>
 
-                    <TextBox Grid.Column="2"
+                    <Label Grid.Column="2"
+                           Content="- per"
+                           VerticalAlignment="Center"/>
+
+                    <TextBox Grid.Column="3"
                              Name="textBoxChosenQuantity"
                              HorizontalAlignment="Right"
-                             VerticalAlignment="Center"
-                             Width="50"
+                             VerticalAlignment="Center"                             
                              Text="0"
-                             Height="20"
-                             Margin="40,10,3,10"/>
+                             Width="40"
+                             Margin="0"/>
 
-                    <ComboBox Grid.Column="3"
+                    <Label Grid.Column="4"
+                           Content="measure unit"
+                           FontSize="12"
+                           x:Name="labelChosenMeasure"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Left"
+                           Margin="0,10,10,10"
+                           Width="100"/>
+
+                    <!--<ComboBox Grid.Column="4"
                               Name="comboBoxChosenMeasure"
                               VerticalAlignment="Center"
-                              HorizontalAlignment="Right"
-                              Margin="3,10,10,10"
+                              HorizontalAlignment="Left"
+                              Margin="0,10,10,10"
                               Width="100"
-                              Height="20"
-                              IsReadOnly="True"/>
+                              IsReadOnly="True"/>-->
                 </Grid>
             </StackPanel>
 
-            <StackPanel Grid.Row="4"
-                        DockPanel.Dock="Top">
+            <StackPanel Grid.Row="4" Margin="0,5,0,0">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
@@ -157,23 +170,24 @@
 
                     <Button Grid.Column="1"
                             Content="Cancel"
+                            Foreground="Red"
                             HorizontalAlignment="Right"
                             VerticalAlignment="Center"
-                            Width="40"
-                            Height="20"
                             IsCancel="True"
                             Click="btnCancelClick"
-                            Margin="10"/>
+                            Padding="5"
+                            Margin="0,0,15,0"/>
 
                     <Button Grid.Column="0"
-                            Content="OK"
+                            Content="Save"
+                            Foreground="Green"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Center"
                             Width="40"
-                            Height="20"
                             IsDefault="True"
                             Click="btnOkClick"
-                            Margin="10"/>
+                            Padding="5"
+                            Margin="15,0,0,0"/>
                 </Grid>
             </StackPanel>
         </Grid>

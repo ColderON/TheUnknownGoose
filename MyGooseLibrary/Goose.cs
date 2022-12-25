@@ -1,6 +1,7 @@
 ﻿using MyGooseLibrary.DatabaseClasses;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data;
 using System.Data.Common;
 using System.Data.SqlClient;
@@ -16,10 +17,10 @@ namespace MyGooseLibrary
         public static IDbCommand? cmd;
         public static IDataReader? reader;
 
-        public static List<CategoryOfProduct> categorOfProdList = new List<CategoryOfProduct>();
-        public static List<CategoryOfDish> categoryOfDishesList = new List<CategoryOfDish>();
-        public static List<Product> productsList = new List<Product>();       
-        public static List<Dish> dishesList = new List<Dish>();
+        public static ObservableCollection<CategoryOfProduct> categorOfProdList = new ObservableCollection<CategoryOfProduct>();
+        public static ObservableCollection<CategoryOfDish> categoryOfDishesList = new ObservableCollection<CategoryOfDish>();
+        public static ObservableCollection<Product> productsList = new ObservableCollection<Product>();       
+        public static ObservableCollection<Dish> dishesList = new ObservableCollection<Dish>();
 
         public static void CreateConnection()
         {

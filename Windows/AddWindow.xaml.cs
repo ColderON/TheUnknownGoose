@@ -27,7 +27,6 @@ namespace TheUnknownGoose
         public AddWindow()
         {
             InitializeComponent();
-            
         }
 
         private void btnCancelClick(object sender, RoutedEventArgs e)
@@ -36,19 +35,18 @@ namespace TheUnknownGoose
         }
 
         private void btnAddClick(object sender, RoutedEventArgs e)
-        {
-            Goose.cmd = Goose.connection.CreateCommand();
+        {           
             bool duplicateFound = false;
 
             if (rBtnProduct.IsChecked == true )
             {
                 foreach (var item in Goose.productsList)
                 {
-                    if (Convert.ToString(textBoxChosenName) == item.name)
+                    if (textBoxChosenName.Text == item.name)
                     {
                         duplicateFound=true;
                         MessageBox.Show("This name already exists", "Alert", MessageBoxButton.OK, MessageBoxImage.Information);
-                        break;
+                        return;
                     }
                 }
                 long categId = (long)(comboBoxChosenCategory.SelectedItem as CategoryOfProduct).id;
@@ -61,27 +59,27 @@ namespace TheUnknownGoose
             {
                 foreach (var item in Goose.dishesList)
                 {
-                    if (Convert.ToString(textBoxChosenName) == item.name)
+                    if (textBoxChosenName.Text == item.name)
                     {
                         duplicateFound = true;
                         MessageBox.Show("This name already exists", "Alert", MessageBoxButton.OK, MessageBoxImage.Information);
-                        break;
+                        return;
                     }
                 }
                 long categId = (long)(comboBoxChosenCategory.SelectedItem as CategoryOfDish).id;
-                string prodName = textBoxChosenName.Text;
+                string dishName = textBoxChosenName.Text;
                 int kcal = Convert.ToInt32(textBoxKcalAmount.Text);
-                string measure = textBoxChosenQuantity.Text + comboBoxChosenMeasure.Text;
-                AddNewDishToDatabase(categId, prodName, kcal, measure);
+                AddNewDishToDatabase(categId, dishName, kcal);
             }
         }
 
         private void AddNewProductToDatabase(long categid, string prodname, int kcal, string measure)
         {
+            Goose.cmd = Goose.connection.CreateCommand();
             Goose.cmd.CommandText = "Insert into Products(Name, NumberOfCalories, Measure, CategoryId)" +
                 "Values(@prodname, @kcal, @measure, @categid)";
 
-            Goose.cmd.Parameters.Add(new SqlParameter { 
+            Goose.cmd.Parameters.Add(new SqlParameter {
                 ParameterName = "categid",
                 DbType = System.Data.DbType.Int64,
                 Size = 64,
@@ -115,7 +113,6 @@ namespace TheUnknownGoose
             Goose.cmd.ExecuteNonQuery();
             AddNewProductToList(categid, prodname, kcal, measure);
         }
-
         private void AddNewProductToList(long categid, string prodname, int kcal, string measure)
         {
             Goose.cmd = Goose.connection.CreateCommand();
@@ -145,15 +142,17 @@ namespace TheUnknownGoose
                 id = (long)itemId.Value,
                 name = prodname,
                 numberOfCalories= kcal,
+                categoryId = categid,
                 measure = measure
-            });
+            });            
             this.Close();
         }
 
-        private void AddNewDishToDatabase(long categid, string prodname, int kcal, string measure)
+        private void AddNewDishToDatabase(long categid, string dishname, int kcal)
         {
-            Goose.cmd.CommandText = "Insert into Dishes(Name, NumberOfCalories, Measure, CategoryId)" +
-                                    "Values(@categid, @prodname, @kcal, @measure)";
+            Goose.cmd = Goose.connection.CreateCommand();
+            Goose.cmd.CommandText = "Insert into Dishes(Name, NumberOfCalories, CategoryId)" +
+                                   "Values(@dishname, @kcal, @categid)";
 
             Goose.cmd.Parameters.Add(new SqlParameter
             {
@@ -165,11 +164,11 @@ namespace TheUnknownGoose
             });
             Goose.cmd.Parameters.Add(new SqlParameter
             {
-                ParameterName = "prodname",
+                ParameterName = "dishname",
                 DbType = DbType.String,
                 Size = 32,
                 Direction = ParameterDirection.Input,
-                Value = prodname
+                Value = dishname
             });
             Goose.cmd.Parameters.Add(new SqlParameter
             {
@@ -179,23 +178,15 @@ namespace TheUnknownGoose
                 Direction = ParameterDirection.Input,
                 Value = kcal
             });
-            Goose.cmd.Parameters.Add(new SqlParameter
-            {
-                ParameterName = "measure",
-                DbType = DbType.String,
-                Size = 32,
-                Direction = ParameterDirection.Input,
-                Value = measure
-            });
             Goose.cmd.ExecuteNonQuery();
-            AddNewDishToList(categid, prodname, kcal, measure);
+            AddNewDishToList(categid, dishname, kcal);
         }
 
-        private void AddNewDishToList(long categid, string prodname, int kcal, string measure)
+        private void AddNewDishToList(long categid, string dishname, int kcal)
         {
             Goose.cmd = Goose.connection.CreateCommand();
             Goose.cmd.CommandType = CommandType.StoredProcedure;
-            Goose.cmd.CommandText = "GetIdforList_Products";
+            Goose.cmd.CommandText = "GetIdforList_Dishes";
 
             Goose.cmd.Parameters.Add(new SqlParameter
             {
@@ -203,25 +194,25 @@ namespace TheUnknownGoose
                 Direction = ParameterDirection.Input,
                 DbType = DbType.String,
                 Size = 32,
-                Value = prodname,
+                Value = dishname,
             });
 
             SqlParameter itemId = (new SqlParameter
             {
                 ParameterName = "itemId",
                 Direction = ParameterDirection.Output,
-                DbType = DbType.Int32,
+                DbType = DbType.Int64,
             });
 
             Goose.cmd.Parameters.Add(itemId);
             Goose.cmd.ExecuteNonQuery();
 
-            Goose.productsList.Add(new Product
+            Goose.dishesList.Add(new Dish
             {
                 id = (long)itemId.Value,
-                name = prodname,
-                numberOfCalories = kcal,
-                measure = measure
+                name = dishname,
+                categoryId = categid,
+                numberOfCalories = kcal
             });
             this.Close();
         }
@@ -230,16 +221,22 @@ namespace TheUnknownGoose
         {
             comboBoxChosenCategory.Items.Clear();
             comboBoxChosenCategory.SelectedIndex = 0;
-            foreach (var a in Goose.categoryOfDishesList)
-                comboBoxChosenCategory.Items.Add(a);
+            foreach (var a in Goose.categoryOfDishesList) { comboBoxChosenCategory.Items.Add(a); }
+            comboBoxChosenMeasure.Items.Clear();
+            comboBoxChosenMeasure.Items.Add("portion");
+            comboBoxChosenMeasure.SelectedIndex = 0;
         }
 
         private void rBtnProduct_Checked(object sender, RoutedEventArgs e)
         {
             comboBoxChosenCategory.Items.Clear();
             comboBoxChosenCategory.SelectedIndex = 0;
-            foreach (var a in Goose.categorOfProdList)
-                comboBoxChosenCategory.Items.Add(a);
+            foreach (var a in Goose.categorOfProdList) { comboBoxChosenCategory.Items.Add(a); }
+            comboBoxChosenMeasure.Items.Clear();
+            comboBoxChosenMeasure.Items.Add("stk");
+            comboBoxChosenMeasure.Items.Add("grams");
+            comboBoxChosenMeasure.Items.Add("per 355 ml");
+            comboBoxChosenMeasure.SelectedIndex= 0;
         }
     }
 }

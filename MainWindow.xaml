@@ -5,26 +5,33 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TheUnknownGoose"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="TheUknownGoose v1.0" Height="450" Width="800">
+
     <DockPanel>
         <Border DockPanel.Dock="Top" BorderBrush="Gray" BorderThickness="3"
                 Background="WhiteSmoke">
 
-            <Grid Background="AliceBlue" >
+            <Grid Background="LightGreen" >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="120"/>
                     <ColumnDefinition Width="120"/>
                     <ColumnDefinition Width="120"/>
+                    <ColumnDefinition Width="360"/>
+                    <ColumnDefinition Width="15"/>
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
 
-                <Button x:Name="btnShowProductsList" Grid.Column="0" Content="My Meal" BorderBrush="LightGray"
-                        Width="100" Height="30" HorizontalAlignment="Left" Margin="10" Click="btnShowProductsList_Click"/>
-                <Button x:Name="btnAddItem" Grid.Column="1" Content="Products List" BorderBrush="LightGray"
-                        Width="100" Height="30" HorizontalAlignment="Left" Margin="10" Click="btnAddItem_Click"/>
-                <Button x:Name="btnCalories" Grid.Column="2" Content="Calorie Counter" BorderBrush="LightGray"
-                        Width="100" Height="30" HorizontalAlignment="Left" Margin="10" Click="btnCalories_Click"/>
-                <ProgressBar x:Name="progBar" Grid.Column="3" IsEnabled="True" Margin="10" x:FieldModifier="public"/>
+                <Button x:Name="btnMyMeal" Grid.Column="0" Content="My Meal" BorderBrush="LightGray"
+                        Width="100" Height="30" HorizontalAlignment="Left" Margin="10" Click="btnMyMeal_Click"/>
+                <Button x:Name="btnProductsList" Grid.Column="1" Content="Products List" BorderBrush="LightGray"
+                        Width="100" Height="30" HorizontalAlignment="Left" Margin="10" Click="btnProductsList_Click"/>
+                <Button x:Name="btnCalorieCounter" Grid.Column="2" Content="Calorie Counter" BorderBrush="LightGray"
+                        Width="100" Height="30" HorizontalAlignment="Left" Margin="10" Click="btnCalorieCounter_Click"/>
+                
+                <ProgressBar x:Name="progBar" Grid.ColumnSpan="4" Grid.Column="3" Margin="10" x:FieldModifier="public"/>
+                <Label x:Name="lblCurrentCallorie" Grid.Column="3" Content="0" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0"/>
+                <Label x:Name="lblslash" Grid.Column="4" Content="/" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0"/>
+                <Label x:Name="lblMaxCalorie" Grid.Column="5" Content="2200" HorizontalAlignment="Left" VerticalAlignment="Center" Padding="0"/>
             </Grid>
         </Border>
 
