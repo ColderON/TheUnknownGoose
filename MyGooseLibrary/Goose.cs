@@ -217,32 +217,15 @@ namespace MyGooseLibrary
 
         public static bool CheckForNumbers(string tbText)
         {
-            if (tbText != $"^[0-9]+$")
+            for (int i = 0; i < tbText.Length; i++)
             {
-                MessageBox.Show("Some of the textboxes contains letters", "Error!", MessageBoxButton.OK, icon:MessageBoxImage.Error);
-                return false;
+                if (tbText[i] < (char)48 || tbText[i] > (char)59)
+                {
+                    MessageBox.Show("Some of the textboxes contains letters", "Error!", MessageBoxButton.OK, icon:MessageBoxImage.Error);
+                    return false;
+                }
             }
-            else
-            {
-                return true;
-            }
+            return true;
         }
-
-        ////TOCHECK
-        //public static void AddNewDishToList()
-        //{
-        //    cmd = connection.CreateCommand();
-        //    cmd.CommandText = "SELECT Id, Name, NumberOfCalories, Comment FROM Dishes ORDER BY Id DESC" +
-        //        " OFFSET 0 ROWS FETCH FIRST 1 ROW ONLY";
-        //    reader = cmd.ExecuteReader();
-
-        //    while (reader.Read())
-        //    {
-        //        dishesList.Add(new Dish(reader));
-        //    }
-
-        //    //TOCHECK
-        //    reader.Close();
-        //}
     }
 }
