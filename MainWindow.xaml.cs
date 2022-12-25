@@ -43,17 +43,17 @@ namespace TheUnknownGoose
             lblMaxCalorie.Content = maxCalories;
         }
 
-        private void btnShowProductsList_Click(object sender, RoutedEventArgs e)
+        private void btnMyMeal_Click(object sender, RoutedEventArgs e)
         {
             MainPage.Content = myMeal;
         }
 
-        private void btnAddItem_Click(object sender, RoutedEventArgs e)
+        private void btnProductsList_Click(object sender, RoutedEventArgs e)
         {
             MainPage.Content = productsList;
-        }
+        }       
 
-        private void btnCalories_Click(object sender, RoutedEventArgs e)
+        private void btnCalorieCounter_Click(object sender, RoutedEventArgs e)
         {
             MainPage.Content = calorieCounter;
         }
