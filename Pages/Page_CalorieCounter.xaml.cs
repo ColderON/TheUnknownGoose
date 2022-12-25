@@ -109,6 +109,7 @@ namespace TheUnknownGoose
             MainWindow mainWindow = Application.Current.MainWindow as MainWindow;
             mainWindow.maxCalories = result;
             mainWindow.progBar.Maximum= result;
+            mainWindow.lblMaxCalorie.Content = mainWindow.maxCalories;
             textBoxResult.Text = result.ToString();
         }
     }
