@@ -45,7 +45,7 @@ namespace TheUnknownGoose
 
         private void btnMyMeal_Click(object sender, RoutedEventArgs e)
         {
-            MainPage.Content = myMeal;
+            MainPage.Content = myMeal;            
         }
 
         private void btnProductsList_Click(object sender, RoutedEventArgs e)

@@ -35,7 +35,6 @@
             </Grid>
         </Border>
 
-
         <Grid>
             <Frame x:Name="MainPage" NavigationUIVisibility="Hidden"/>
         </Grid>
