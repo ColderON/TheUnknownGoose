@@ -95,6 +95,12 @@ namespace TheUnknownGoose
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
+            if (listBoxChosenProductsDishes.SelectedIndex < 0)
+            {
+                MessageBox.Show("No selected item", "Error!", MessageBoxButton.OK, icon: MessageBoxImage.Error);
+                return;
+            }
+
             mainWindow.curCaloris -= (double)(listBoxChosenProductsDishes.SelectedItem as VM).numberOfCalories;
             mainWindow.progBar.Value = mainWindow.curCaloris;
             mainWindow.lblCurrentCallorie.Content = mainWindow.curCaloris;
